@@ -23,4 +23,5 @@ public class AdminController implements IAdminController{
         }
         return ResponseEntity.status(HttpStatus.OK).body(persona);
     }
+
 }

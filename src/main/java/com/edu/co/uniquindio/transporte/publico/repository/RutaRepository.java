@@ -1,13 +1,18 @@
 package com.edu.co.uniquindio.transporte.publico.repository;
 
+
 import com.edu.co.uniquindio.transporte.publico.domain.Administrador;
+import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface AdministradorRepository extends CrudRepository<Administrador, Integer> {
+public interface RutaRepository extends CrudRepository<Ruta, Integer> {
 
-    Optional<Administrador> findByEmailAndPass(String email, String pass);
+
+    Optional<Ruta> findByNombreOrId(String nombre, Integer id);
+
+
 }
