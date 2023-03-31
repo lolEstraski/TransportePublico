@@ -1,0 +1,21 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  create-admin-tables
+       author:  andres
+       changes:
+         -  sqlFile:
+              dbms:  'h2'
+              endDelimiter:  \nGO
+              splitStatements:  true
+              path:  /db/changelog/createAdminTables.sql
+              stripComments:  false
+  -  changeSet:
+        id: add-default-admin-data
+        author: andres
+        changes:
+          - sqlFile:
+              dbms: 'h2'
+              endDelimiter: \nGO
+              splitStatements: true
+              path: /db/changelog/addDefaultAdminData.sql
+              stripComments: false
