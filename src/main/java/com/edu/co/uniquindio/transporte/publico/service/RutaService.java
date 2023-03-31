@@ -2,14 +2,13 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
-import com.edu.co.uniquindio.transporte.publico.dto.PersonaDto;
-import com.edu.co.uniquindio.transporte.publico.dto.Rol;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
-import com.edu.co.uniquindio.transporte.publico.repository.AdministradorRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -49,4 +48,21 @@ public class RutaService {
 
         return rutaDto;
     }
+
+    public Ruta actualizarRuta( RutaRequest parametros) throws Exception {
+        Optional<Ruta> optionalRuta = rutaRepository.findByNombreOrId(parametros.getNombre(), null);
+        if (optionalRuta.isPresent()) {
+            Ruta ruta = optionalRuta.get();
+            ruta.setNombre(parametros.getNombre());
+            ruta.setFrecuencia(parametros.getFrecuencia());
+            ruta.setSentido(parametros.getSentido());
+            return rutaRepository.save(ruta);
+        }else{
+            throw new Exception("la ruta no exite");
+        }
+    }
+
+
 }
+
+

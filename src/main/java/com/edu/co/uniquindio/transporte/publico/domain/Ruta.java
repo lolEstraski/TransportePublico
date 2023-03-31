@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @Entity( name = "RUTAS")
@@ -23,5 +25,7 @@ public class Ruta implements Serializable {
     private  String sentido;
 
     private  String frecuencia;
+
+
 
 }
