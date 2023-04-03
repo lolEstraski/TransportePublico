@@ -3,7 +3,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.ListaRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
@@ -11,9 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @RequestMapping("/ruta")
@@ -46,12 +42,5 @@ public class RutaParadaControllerController implements IRutaParadaController {
     public void elimarRuta(EliminarRutaRequest parametros) throws Exception {
         rutaService.eliminarRuta(parametros);
     }
-
-    @Override
-    public List<Ruta> buscarRutaEspecial(ListaRutaRequest parametros) {
-        var ruta = rutaService.buscarRutaEspecial(parametros);
-        return List<Ruta>.ok(ruta);
-    }
-
 
 }

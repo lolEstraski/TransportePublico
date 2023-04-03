@@ -52,13 +52,7 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
-    @PostMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("Se listan las rutas que contengan plataformas para discapacitados")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "Se encontraron las rutas con plataformas", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "No se encuentran rutas con plataformas", response = Exception.class )
-    })
-    List<Ruta> buscarRutaEspecial(@RequestBody ListaRutaRequest parametros);
+
+
 
 }

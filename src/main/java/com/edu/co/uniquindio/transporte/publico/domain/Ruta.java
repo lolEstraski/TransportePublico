@@ -27,5 +27,4 @@ public class Ruta implements Serializable {
 
     private  String frecuencia;
 
-    private boolean plataformaDiscapacitados;
 }
