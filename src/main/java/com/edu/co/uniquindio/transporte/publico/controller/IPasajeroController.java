@@ -1,2 +1,8 @@
-package com.edu.co.uniquindio.transporte.publico.controller;public interface IPasajeroController {
+package com.edu.co.uniquindio.transporte.publico.controller;
+
+
+
+public interface IPasajeroController {
+
+
 }

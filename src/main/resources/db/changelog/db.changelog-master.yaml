@@ -29,3 +29,13 @@ databaseChangeLog:
               splitStatements: true
               path: /db/changelog/createRutaTables.sql
               stripComments: false
+  -  changeSet:
+        id: create-ruta-table
+        author: andres
+        changes:
+          - sqlFile:
+             dbms: 'h2'
+             endDelimiter: \nGO
+             splitStatements: true
+             path: /db/changelog/actualizarRutaTables.sql
+             stripComments: false

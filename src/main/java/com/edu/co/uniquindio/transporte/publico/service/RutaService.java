@@ -2,6 +2,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
+import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
@@ -61,6 +62,12 @@ public class RutaService {
             throw new Exception("la ruta no exite");
         }
     }
+
+    public  void eliminarRuta (EliminarRutaRequest parametros) {
+        var ruta = rutaRepository.findById(parametros.getId());
+        ruta.ifPresent(ruta1 -> rutaRepository.delete(ruta1));
+    }
+
 
 
 }

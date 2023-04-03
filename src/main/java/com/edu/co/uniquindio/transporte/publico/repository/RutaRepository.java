@@ -13,7 +13,7 @@ public interface RutaRepository extends CrudRepository<Ruta, Integer> {
 
     Optional<Ruta> findByNombreOrId(String nombre, Integer id);
 
-    Optional<Ruta> findById( Integer id);
+   // Optional<Ruta> findById( Integer id);
 
 
 }
