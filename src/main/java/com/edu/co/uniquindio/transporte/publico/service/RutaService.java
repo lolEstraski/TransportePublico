@@ -3,6 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.ListaRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
@@ -69,7 +70,22 @@ public class RutaService {
     }
 
 
+    public RutaDto buscarRutaEspecial (ListaRutaRequest parametros){
 
+        RutaDto rutaDto = null;
+        var ruta = rutaRepository.findByNombreOrId(nombre, id);
+        rutaDto = ruta.map( ruta1 ->  {
+            var rutaTemporal = new RutaDto();
+            rutaTemporal.setId(ruta1.getId());
+            rutaTemporal.setNombre(ruta1.getNombre());
+            rutaTemporal.setSentido(ruta1.getSentido());
+            rutaTemporal.setFrecuencia(ruta1.getFrecuencia());
+
+            return rutaTemporal;
+        }).orElse(null);
+
+        return rutaDto;
+    }
 }
 
 

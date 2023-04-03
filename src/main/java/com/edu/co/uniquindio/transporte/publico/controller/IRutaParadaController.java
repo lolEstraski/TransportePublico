@@ -1,16 +1,14 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
-import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.PersonaDto;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 public interface IRutaParadaController {
@@ -54,7 +52,13 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
-
-
+    @PostMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("Se listan las rutas que contengan plataformas para discapacitados")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Se encontraron las rutas con plataformas", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "No se encuentran rutas con plataformas", response = Exception.class )
+    })
+    List<Ruta> buscarRutaEspecial(@RequestBody ListaRutaRequest parametros);
 
 }

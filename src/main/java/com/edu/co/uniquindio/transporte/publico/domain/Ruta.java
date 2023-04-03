@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -26,6 +27,5 @@ public class Ruta implements Serializable {
 
     private  String frecuencia;
 
-
-
+    private boolean plataformaDiscapacitados;
 }
