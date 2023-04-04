@@ -24,4 +24,5 @@ public class Pasajero implements Serializable {
     private String telefono;
     private String email;
     private  String pass;
+
 }

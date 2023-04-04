@@ -3,19 +3,14 @@ package com.edu.co.uniquindio.transporte.publico.dto;
 import lombok.Data;
 
 @Data
-public class PersonaDto {
+public class RutaFavoritaDto {
 
     private Integer id;
 
     private String nombre;
 
-    private  String email;
+    private  String sentido;
 
-    private String cedula;
-
-    private Rol rol;
-
-    private String contrasena;
-
+    private  String frecuencia;
 
 }
