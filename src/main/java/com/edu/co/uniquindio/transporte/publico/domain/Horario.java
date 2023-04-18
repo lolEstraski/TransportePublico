@@ -8,25 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+
+@Entity( name = "HORARIO")
 @Data
-@Entity( name = "RUTAS")
 @NoArgsConstructor
-public class Ruta implements Serializable {
+public class Horario implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private Integer IdHorario;
+    private String dia;
 
-    private String nombre;
-
-    private  String sentido;
-
-    private  String frecuencia;
-
+    private String hora;
 }

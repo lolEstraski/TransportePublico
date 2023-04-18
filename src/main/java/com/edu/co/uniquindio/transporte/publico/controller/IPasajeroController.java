@@ -6,6 +6,7 @@ import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.ContrasenaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RegistrarPasajeroRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -46,9 +47,7 @@ public interface IPasajeroController {
     ResponseEntity<String> actualizarContrasena(@PathVariable Integer id,@RequestBody ActualizarContrasenaRequest parametros) throws Exception;
 
 
-
-
-
+    RutaRequest obtenerInformacionRuta(@RequestBody String nombre)throws Exception;
 
 
 

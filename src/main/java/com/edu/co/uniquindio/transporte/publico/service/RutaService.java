@@ -1,14 +1,17 @@
 package com.edu.co.uniquindio.transporte.publico.service;
 
 
+import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
+import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,7 +19,7 @@ import java.util.Optional;
 public class RutaService {
 
     private RutaRepository rutaRepository;
-
+    private HorarioRepository horarioRepository;
 
     public Ruta crearRuta (RutaRequest parametros){
 
@@ -66,6 +69,28 @@ public class RutaService {
     public  void eliminarRuta (EliminarRutaRequest parametros) {
         var ruta = rutaRepository.findById(parametros.getId());
         ruta.ifPresent(ruta1 -> rutaRepository.delete(ruta1));
+    }
+
+    public RutaRequest obtenerInformacionRuta(String nombre)throws Exception {
+        RutaRequest rutaRequest = null;
+        var optionalRuta = rutaRepository.findByNombre(nombre);
+        if(optionalRuta.isPresent()){
+
+            Ruta ruta = optionalRuta.get();
+            Optional<Horario> optionalHorario = horarioRepository.findById(ruta.getIdHorario());
+            Horario horario = optionalHorario.get();
+            rutaRequest = optionalRuta.map( ruta1 ->  {
+                var rutaTemporal = new RutaRequest();
+                rutaTemporal.setNombre(ruta1.getNombre());
+                rutaTemporal.setSentido(ruta1.getSentido());
+                rutaTemporal.setFrecuencia(ruta1.getFrecuencia());
+                rutaTemporal.setDia(horario.getDia());
+                rutaTemporal.setHora(horario.getHora());
+                //rutaTemporal.setListRutaHorario(ruta1.getListRutaHorario());
+                return rutaTemporal;
+            }).orElse(null);
+        }
+        return rutaRequest;
     }
 
 }

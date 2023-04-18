@@ -4,7 +4,9 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 import com.edu.co.uniquindio.transporte.publico.domain.Pasajero;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RegistrarPasajeroRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
+import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
 
 
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PasajeroController implements IPasajeroController {
 
     private PasajeroService pasajeroService;
-
+    private RutaService rutaService;
 
     @Override
     public Pasajero registrarPasajero(RegistrarPasajeroRequest parametros) {
@@ -41,5 +43,11 @@ public class PasajeroController implements IPasajeroController {
         return pasajeroService.recuperarContrasena(parametros);
     }
     */
+
+    @Override
+    public RutaRequest obtenerInformacionRuta(String nombre) throws Exception {
+
+        return rutaService.obtenerInformacionRuta(nombre);
+    }
 
 }
