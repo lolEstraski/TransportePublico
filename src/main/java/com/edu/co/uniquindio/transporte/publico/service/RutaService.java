@@ -75,7 +75,6 @@ public class RutaService {
         RutaRequest rutaRequest = null;
         var optionalRuta = rutaRepository.findByNombre(nombre);
         if(optionalRuta.isPresent()){
-
             Ruta ruta = optionalRuta.get();
             Optional<Horario> optionalHorario = horarioRepository.findById(ruta.getIdHorario());
             Horario horario = optionalHorario.get();
@@ -93,6 +92,13 @@ public class RutaService {
         return rutaRequest;
     }
 
+
+/**
+ public List<Ruta> listarRutas() {
+ return rutaRepository.findAll();
+ }
+
+*/
 }
 
 

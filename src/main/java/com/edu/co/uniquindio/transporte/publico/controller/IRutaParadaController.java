@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public interface IRutaParadaController {
 
 
@@ -49,6 +51,17 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
+
+    /**
+    @GetMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("lista  las rutas ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "listada con exito", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "no se puede listar", response = Exception.class )
+    })
+    List<Ruta> listarRutas() ;
+*/
 
 
 

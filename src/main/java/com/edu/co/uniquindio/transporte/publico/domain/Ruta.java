@@ -29,4 +29,7 @@ public class Ruta implements Serializable {
 
     private  String frecuencia;
 
+
+
+
 }
