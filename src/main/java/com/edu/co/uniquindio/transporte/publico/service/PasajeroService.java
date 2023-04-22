@@ -1,9 +1,9 @@
 package com.edu.co.uniquindio.transporte.publico.service;
 
-import com.edu.co.uniquindio.transporte.publico.domain.Pasajero;
-import com.edu.co.uniquindio.transporte.publico.dto.RegistrarPasajeroRequest;
+import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,26 +13,46 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PasajeroService {
 
-
+    @Autowired
     private PasajeroRepository pasajeroRepository;
 
+    private EmailService emailService;
 
 
-    public Pasajero registrarPasajero(RegistrarPasajeroRequest parametros) {
+    public Persona registrarPasajero(Persona persona) throws Exception {
 
-            Pasajero pasajero = new Pasajero();
-            pasajero.setCedula(parametros.getCedula());
-            pasajero.setPass(parametros.getNombre());
-            pasajero.setNombre(parametros.getNombre());
-            pasajero.setEmail(parametros.getEmail());
-            pasajero.setTelefono(parametros.getTelefono());
-            return pasajeroRepository.save(pasajero);
+        Persona pasajeroRegistrado = null;
+        boolean correoExiste = esRepetido(persona.getEmail());
+        if (correoExiste) {
+            throw new Exception("El Correo ya esta en Uso");
         }
+        //cedula
+        boolean cedulaExiste = cedulaRepetida(persona.getCedula());
+        if (cedulaExiste) {
+            throw new Exception("La cedula ingresada ya existe");
+        }
+        var pasajeroRegistrar = new Persona();
+        pasajeroRegistrar.setCedula(persona.getCedula());
+        pasajeroRegistrar.setPass(persona.getNombre());
+        pasajeroRegistrar.setNombre(persona.getNombre());
+        pasajeroRegistrar.setEmail(persona.getEmail());
+        pasajeroRegistrar.setTelefono(persona.getTelefono());
+        pasajeroRegistrado = pasajeroRepository.save(pasajeroRegistrar);
+        emailService.enviarEmail("Registro de cuenta en Tpublico", "Hola " + pasajeroRegistrado.getNombre() + " es un gusto que haya registrado en TPublico, para activar su cuenta ingrese en el siguiente link: url", pasajeroRegistrado.getEmail());
+        return pasajeroRegistrado;
+    }
+
+    private boolean esRepetido(String email){
+        return pasajeroRepository.findByEmail(email).orElse(null) != null;
+    }
+    private boolean cedulaRepetida(Integer cedula) {
+        return pasajeroRepository.existsById(cedula);
+    }
 
     public void actualizarContrasena(Integer id, String contrasenaActual, String nuevaContrasena) throws Exception {
 
         // Buscar al pasajero por el ID proporcionado
-        Pasajero pasajero = buscarPorId(id);
+        Persona pasajero = buscarPorId(id);
 
         // Si no se encuentra el pasajero, lanzar una excepción de tipo PasajeroNoEncontradoException
         if (pasajero == null) {
@@ -48,8 +68,8 @@ public class PasajeroService {
     }
 
 
-    public Pasajero buscarPorId(Integer id) throws Exception {
-        Optional<Pasajero> resultado = pasajeroRepository.findById(id);
+    public Persona buscarPorId(Integer id) throws Exception {
+        Optional<Persona> resultado = pasajeroRepository.findById(id);
         if (resultado.isPresent()) {
             return resultado.get();
         } else {

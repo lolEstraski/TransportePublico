@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface IRutaParadaController {
 
@@ -17,10 +17,11 @@ public interface IRutaParadaController {
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("crea una ruta  ")
     @ApiResponses({
-            @ApiResponse( code = 200, message = "Login exitoso", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "Verificar credenciales", response = Exception.class )
+            @ApiResponse( code = 200, message = "ruta creada con exito", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "Verificar ", response = Exception.class )
     })
     ResponseEntity<Ruta> crearRuta(@RequestBody RutaRequest parametros);
+
 
     @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")
@@ -51,18 +52,15 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
-
     /**
-    @GetMapping
+   @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("lista  las rutas ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "listada con exito", response = Ruta.class ),
             @ApiResponse( code = 400, message = "no se puede listar", response = Exception.class )
-    })
-    List<Ruta> listarRutas() ;
-*/
-
+    })*/
+    ArrayList<Ruta>obtenerRutas();
 
 
 }

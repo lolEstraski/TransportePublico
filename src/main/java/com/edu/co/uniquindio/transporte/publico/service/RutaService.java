@@ -11,6 +11,7 @@ import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +72,10 @@ public class RutaService {
         ruta.ifPresent(ruta1 -> rutaRepository.delete(ruta1));
     }
 
+    public ArrayList<Ruta> obtenerRutas() {
+        return (ArrayList<Ruta>) rutaRepository.findAll();
+    }
+
     public RutaRequest obtenerInformacionRuta(String nombre)throws Exception {
         RutaRequest rutaRequest = null;
         var optionalRuta = rutaRepository.findByNombre(nombre);
@@ -93,12 +98,6 @@ public class RutaService {
     }
 
 
-/**
- public List<Ruta> listarRutas() {
- return rutaRepository.findAll();
- }
-
-*/
 }
 
 

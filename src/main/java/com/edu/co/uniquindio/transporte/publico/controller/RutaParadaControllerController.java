@@ -6,13 +6,12 @@ import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
-import com.google.api.gax.rpc.ClientStream;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController()
 @RequestMapping("/ruta")
@@ -46,16 +45,11 @@ public class RutaParadaControllerController implements IRutaParadaController {
         rutaService.eliminarRuta(parametros);
     }
 
-    /**
-     *
-     * @return
+
 
     @Override
-    public List<Ruta> listarRutas() {
-            return rutaService.listarRutas();
+    public ArrayList<Ruta> obtenerRutas() {
+            return rutaService.obtenerRutas();
         }
-     */
-
-
 
 }
