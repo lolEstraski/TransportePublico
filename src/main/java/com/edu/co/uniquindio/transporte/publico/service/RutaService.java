@@ -38,7 +38,6 @@ public class RutaService {
     }
 
     public RutaDto buscarRuta (String nombre, Integer id){
-
         RutaDto rutaDto = null;
         var ruta = rutaRepository.findByNombreOrId(nombre, id);
         rutaDto = ruta.map( ruta1 ->  {
@@ -72,14 +71,19 @@ public class RutaService {
         ruta.ifPresent(ruta1 -> rutaRepository.delete(ruta1));
     }
 
-    public ArrayList<Ruta> obtenerRutas() {
-        return (ArrayList<Ruta>) rutaRepository.findAll();
+    public List<Ruta> obtenerRutas() {
+        return (List<Ruta>) rutaRepository.findAll();
     }
+/**
+    public List<Ruta> buscarRutas(String origen, String destino) {
+        return rutaRepository.findByOrigenAndDestino(origen, destino);
+    }*/
 
     public RutaRequest obtenerInformacionRuta(String nombre)throws Exception {
         RutaRequest rutaRequest = null;
         var optionalRuta = rutaRepository.findByNombre(nombre);
         if(optionalRuta.isPresent()){
+
             Ruta ruta = optionalRuta.get();
             Optional<Horario> optionalHorario = horarioRepository.findById(ruta.getIdHorario());
             Horario horario = optionalHorario.get();
@@ -96,6 +100,13 @@ public class RutaService {
         }
         return rutaRequest;
     }
+/**
+    public List<Ruta> buscarRutasConPlataforma(boolean b) {
+            return rutaRepository.findByPlataforma(true);
+        }
+*/
+
+
 
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,9 @@ public class Ruta implements Serializable {
     private  String sentido;
 
     private  String frecuencia;
+
+    private boolean plataforma;
+
 
 
 

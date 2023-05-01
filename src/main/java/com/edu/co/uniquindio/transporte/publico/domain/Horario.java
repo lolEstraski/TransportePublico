@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.time.LocalTime;
 
 
 @Entity( name = "HORARIO")
@@ -19,7 +20,10 @@ public class Horario implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+   private String hora;
+
     private String dia;
 
-    private String hora;
+
+
 }

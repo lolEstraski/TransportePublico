@@ -18,6 +18,10 @@ public interface RutaRepository extends CrudRepository<Ruta, Integer> {
     //
     Optional<Ruta> findByNombre(String nombre);
 
+   // List<Ruta> findByOrigenAndDestino(String origen, String destino);
+    // List<Ruta> findByPlataforma(boolean plataforma);
+
+
 
 
 

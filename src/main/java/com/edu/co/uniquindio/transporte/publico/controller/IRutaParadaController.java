@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IRutaParadaController {
 
@@ -52,7 +53,7 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
-    /**
+/**
    @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("lista  las rutas ")
@@ -60,7 +61,28 @@ public interface IRutaParadaController {
             @ApiResponse( code = 200, message = "listada con exito", response = Ruta.class ),
             @ApiResponse( code = 400, message = "no se puede listar", response = Exception.class )
     })*/
-    ArrayList<Ruta>obtenerRutas();
+    List<Ruta> obtenerRutas();
+/**
+    @GetMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("busca una ruta porsu nombre o id ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
+    })
+    List<Ruta> obtenerRutas(@PathVariable String origen, @PathVariable String destino);
+
+
+    @GetMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("busca una ruta por  su nombre o id ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
+    })
+    List<Ruta> buscarRutasConPlataforma();
+*/
+
 
 
 }

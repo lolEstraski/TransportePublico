@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController()
 @RequestMapping("/ruta")
@@ -45,11 +46,21 @@ public class RutaParadaControllerController implements IRutaParadaController {
         rutaService.eliminarRuta(parametros);
     }
 
-
-
     @Override
-    public ArrayList<Ruta> obtenerRutas() {
+    public List<Ruta> obtenerRutas() {
             return rutaService.obtenerRutas();
         }
+/**
+    @Override
+    public List<Ruta> obtenerRutas( String origen,  String destino) {
+        List<Ruta> rutas = rutaService.buscarRutas(origen, destino);
+        return rutas;
+    }
+
+    @Override
+    public List<Ruta> buscarRutasConPlataforma() {
+         return rutaService.buscarRutasConPlataforma(true);
+        }
+*/
 
 }
