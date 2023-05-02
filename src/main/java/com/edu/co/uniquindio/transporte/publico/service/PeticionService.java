@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PeticionService {
 
-
     private PeticionRepository peticionRepository;
 
     public Peticion crearPeticion (PeticionRequest parametros){

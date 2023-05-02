@@ -24,4 +24,7 @@ public interface IPeticionController {
     ResponseEntity<Peticion> crearPeticion(@RequestBody PeticionRequest parametros);
 
 
+
+
+
 }
