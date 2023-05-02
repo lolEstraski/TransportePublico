@@ -54,7 +54,7 @@ public interface IRutaParadaController {
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
 /**
-   @GetMapping
+   @GetMapping()
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("lista  las rutas ")
     @ApiResponses({
