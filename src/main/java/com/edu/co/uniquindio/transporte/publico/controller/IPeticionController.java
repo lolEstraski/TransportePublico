@@ -8,9 +8,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 public interface IPeticionController {
 
@@ -22,6 +22,18 @@ public interface IPeticionController {
             @ApiResponse( code = 400, message = "Verificar ", response = Exception.class )
     })
     ResponseEntity<Peticion> crearPeticion(@RequestBody PeticionRequest parametros);
+
+/**
+    @GetMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("obtiene una peticion dado  su id  ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "la peticion con id es ", response = Peticion.class ),
+            @ApiResponse( code = 400, message = "no se encuentran peticiones  ", response = Exception.class )
+    })
+    List<Peticion> obtenerPeticion(@PathVariable Integer id,@PathVariable String nombre);
+
+*/
 
 
 

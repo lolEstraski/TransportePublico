@@ -53,36 +53,33 @@ public interface IRutaParadaController {
     })
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
-/**
-   @GetMapping()
+
+   @GetMapping(path = "Ruta")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("lista  las rutas ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "listada con exito", response = Ruta.class ),
             @ApiResponse( code = 400, message = "no se puede listar", response = Exception.class )
-    })*/
-    List<Ruta> obtenerRutas();
-/**
-    @GetMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("busca una ruta porsu nombre o id ")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
     })
-    List<Ruta> obtenerRutas(@PathVariable String origen, @PathVariable String destino);
+    List<Ruta> obtenerRutas();
 
-
-    @GetMapping
+    @GetMapping(path = "Rutas")
     @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("busca una ruta por  su nombre o id ")
+    @ApiOperation("busca una ruta por su origen destino  ")
     @ApiResponses({
-            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
+            @ApiResponse( code = 200, message = "Ruta obtenida exitosamente", response = RutaDto.class ),
+            @ApiResponse( code = 400, message = "no se pudo realizar  la obtencion ", response = Exception.class )
+    })
+    List<RutaDto> obtenerRutas(@PathVariable String origen, @PathVariable String destino);
+
+
+    @GetMapping(path = "Rutass")
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("busca una ruta  que contengan plataforma ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Ruta con plataforma", response = Ruta.class ),
+            @ApiResponse( code = 400, message = "no existe ruta con plataforma", response = Exception.class )
     })
     List<Ruta> buscarRutasConPlataforma();
-*/
-
-
 
 }

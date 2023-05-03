@@ -50,10 +50,10 @@ public class RutaParadaControllerController implements IRutaParadaController {
     public List<Ruta> obtenerRutas() {
             return rutaService.obtenerRutas();
         }
-/**
+
     @Override
-    public List<Ruta> obtenerRutas( String origen,  String destino) {
-        List<Ruta> rutas = rutaService.buscarRutas(origen, destino);
+    public List<RutaDto> obtenerRutas( String origen,  String destino) {
+        List<RutaDto> rutas = rutaService.buscarRutas(origen, destino);
         return rutas;
     }
 
@@ -61,6 +61,4 @@ public class RutaParadaControllerController implements IRutaParadaController {
     public List<Ruta> buscarRutasConPlataforma() {
          return rutaService.buscarRutasConPlataforma(true);
         }
-*/
-
 }

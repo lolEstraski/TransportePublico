@@ -32,6 +32,10 @@ public class Ruta implements Serializable {
 
     private boolean plataforma;
 
+    private String origen;
+
+    private String destino;
+
 
 
 

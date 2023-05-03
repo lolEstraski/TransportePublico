@@ -74,10 +74,10 @@ public class RutaService {
     public List<Ruta> obtenerRutas() {
         return (List<Ruta>) rutaRepository.findAll();
     }
-/**
-    public List<Ruta> buscarRutas(String origen, String destino) {
+
+    public List<RutaDto> buscarRutas(String origen, String destino) {
         return rutaRepository.findByOrigenAndDestino(origen, destino);
-    }*/
+    }
 
     public RutaRequest obtenerInformacionRuta(String nombre)throws Exception {
         RutaRequest rutaRequest = null;
@@ -100,11 +100,10 @@ public class RutaService {
         }
         return rutaRequest;
     }
-/**
+
     public List<Ruta> buscarRutasConPlataforma(boolean b) {
             return rutaRepository.findByPlataforma(true);
         }
-*/
 
 
 

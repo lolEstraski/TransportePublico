@@ -16,4 +16,8 @@ public class RutaDto {
 
     private  String frecuencia;
 
+    private  String origen;
+
+    private String destino;
+
 }
