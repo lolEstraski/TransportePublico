@@ -23,7 +23,7 @@ public interface IPeticionController {
     })
     ResponseEntity<Peticion> crearPeticion(@RequestBody PeticionRequest parametros);
 
-/**
+
     @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("obtiene una peticion dado  su id  ")
@@ -31,9 +31,11 @@ public interface IPeticionController {
             @ApiResponse( code = 200, message = "la peticion con id es ", response = Peticion.class ),
             @ApiResponse( code = 400, message = "no se encuentran peticiones  ", response = Exception.class )
     })
-    List<Peticion> obtenerPeticion(@PathVariable Integer id,@PathVariable String nombre);
+    List<Peticion> obtenerPeticion(@PathVariable String nombre);
+    @GetMapping(path = "Peticion")
+   List <Peticion>obtenerPeticionCorreo(@PathVariable String email,@PathVariable String nombre) throws Exception;
 
-*/
+
 
 
 

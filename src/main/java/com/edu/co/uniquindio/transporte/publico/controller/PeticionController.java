@@ -28,12 +28,19 @@ public class PeticionController implements IPeticionController {
         var peticion = peticionService.crearPeticion(parametros) ;
         return ResponseEntity.ok(peticion);
     }
-/**
+
     @Override
-    public List<Peticion> obtenerPeticion(Integer id, String nombre) {
-        List<Peticion> peticiones = peticionService.buscarPeticion(nombre,id);
+    public List<Peticion> obtenerPeticion( String nombre) {
+        List<Peticion> peticiones = peticionService.buscarPeticion(nombre);
         return peticiones;
-    }*/
+    }
+
+    @Override
+    public List<Peticion> obtenerPeticionCorreo(String email,String nombre) throws Exception {
+        List<Peticion> peticiones = peticionService.buscarPeticiones(email,nombre);
+        return peticiones;
+    }
+
 
 
 }

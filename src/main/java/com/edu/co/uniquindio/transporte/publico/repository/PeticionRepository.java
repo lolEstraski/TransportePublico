@@ -17,6 +17,6 @@ public interface PeticionRepository  extends CrudRepository<Peticion, Integer> {
     Optional<Peticion> findById( Integer id);
 
 
-   // List<RutaDto> findByOrigenAndDestino(Integer id,String nombre);
+    List<Peticion> findByNombre(String nombre);
 
 }

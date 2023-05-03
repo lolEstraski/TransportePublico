@@ -55,12 +55,6 @@ public interface IRutaParadaController {
 
 
    @GetMapping(path = "Ruta")
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("lista  las rutas ")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "listada con exito", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "no se puede listar", response = Exception.class )
-    })
     List<Ruta> obtenerRutas();
 
     @GetMapping(path = "Rutas")
