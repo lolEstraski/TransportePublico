@@ -80,7 +80,7 @@ public class RutaService {
     public List<RutaDto> buscarRutas(String origen, String destino) {
         return rutaRepository.findByOrigenAndDestino(origen, destino);
     }
-
+/**
     public RutaRequest obtenerInformacionRuta(String nombre)throws Exception {
         RutaRequest rutaRequest = null;
         var optionalRuta = rutaRepository.findByNombre(nombre);
@@ -93,15 +93,16 @@ public class RutaService {
                 var rutaTemporal = new RutaRequest();
                 rutaTemporal.setNombre(ruta1.getNombre());
                 rutaTemporal.setSentido(ruta1.getSentido());
-                rutaTemporal.setFrecuencia(ruta1.getFrecuencia());
+                rutaTemporal.setFrecuencia(rutaTemporal.getFrecuencia());
                 rutaTemporal.setDia(horario.getDia());
-                rutaTemporal.setHora(horario.getHora());
+                rutaTemporal.setHora(horario.getHoraInicio());
+                rutaTemporal.setHora(horario.getHoraFin());
                 //rutaTemporal.setListRutaHorario(ruta1.getListRutaHorario());
                 return rutaTemporal;
             }).orElse(null);
         }
         return rutaRequest;
-    }
+    }*/
 
     public List<Ruta> buscarRutasConPlataforma(boolean b) {
             return rutaRepository.findByPlataforma(true);

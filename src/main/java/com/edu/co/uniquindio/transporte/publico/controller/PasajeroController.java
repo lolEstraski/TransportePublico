@@ -40,10 +40,10 @@ public class PasajeroController implements IPasajeroController {
         return pasajeroService.recuperarContrasena(parametros);
     }
     */
-
+/**
     @Override
     public RutaRequest obtenerInformacionRuta(String nombre) throws Exception {
         return rutaService.obtenerInformacionRuta(nombre);
-    }
+    }*/
 
 }

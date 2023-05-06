@@ -17,7 +17,6 @@ import java.util.Optional;
 public class PeticionService {
 
     private PeticionRepository peticionRepository;
-    private PasajeroRepository pasajeroRepository;
 
     public Peticion crearPeticion (PeticionRequest parametros){
 
@@ -35,8 +34,6 @@ public class PeticionService {
         }
         return peticionCreada;
     }
-
-
 
     public List<Peticion> listarPeticionesPorNombrePsajero(String nombre) {
         return  peticionRepository.listByNombrePasajero(nombre);

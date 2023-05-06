@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IRutaFavoritaController {
 
-    @PostMapping
+
+    @PostMapping("{id}/favorita/ruta/{id}")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("Agrega una ruta favorita  ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "Ruta agregada con  exito", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "Verificar Datos", response = Exception.class )
+            @ApiResponse( code = 400, message = "no se puede agregar", response = Exception.class )
     })
-    ResponseEntity<Ruta> agregarRutaFavorita(@RequestBody RutaFavoritaRequest parametros);
+    void agregarRutaFavorita(@RequestParam Integer idPersona,Integer idRuta);
 
     @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")

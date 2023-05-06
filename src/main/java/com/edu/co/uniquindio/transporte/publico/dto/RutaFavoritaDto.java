@@ -5,12 +5,9 @@ import lombok.Data;
 @Data
 public class RutaFavoritaDto {
 
-    private Integer id;
+    private Integer idPersona;
+    private  Integer idRuta;
 
-    private String nombre;
 
-    private  String sentido;
-
-    private  String frecuencia;
 
 }

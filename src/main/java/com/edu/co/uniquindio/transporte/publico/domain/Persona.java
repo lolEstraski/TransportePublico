@@ -4,11 +4,9 @@ package com.edu.co.uniquindio.transporte.publico.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity( name = "PASAJEROS")
@@ -25,5 +23,8 @@ public class Persona implements Serializable {
     private String email;
     private  String pass;
 
+    @ManyToMany
+    @JoinColumn(name = "ruta", referencedColumnName = "id")
+    private List<Ruta> RutaFavorita;
 
 }

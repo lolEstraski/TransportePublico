@@ -43,7 +43,7 @@ public interface IPasajeroController {
     ResponseEntity<String> actualizarContrasena(@PathVariable Integer id,@RequestBody ActualizarContrasenaRequest parametros) throws Exception;
 
 
-    RutaRequest obtenerInformacionRuta(@RequestBody String nombre)throws Exception;
+    //RutaRequest obtenerInformacionRuta(@RequestBody String nombre)throws Exception;
 
 
 

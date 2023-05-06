@@ -13,7 +13,7 @@ public class RutaRequest implements Serializable {
 
     private  String sentido;
 
-    private  String frecuencia;
+    private  long frecuencia;
 
     private String dia;
 

@@ -14,7 +14,7 @@ public class RutaDto {
 
     private  String sentido;
 
-    private  String frecuencia;
+    private  long frecuencia;
 
     private  String origen;
 
