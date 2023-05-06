@@ -23,4 +23,5 @@ public class Administrador implements Serializable {
     private String telefono;
     private String email;
     private  String pass;
+
 }

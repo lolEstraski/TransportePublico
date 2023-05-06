@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface PasajeroRepository extends CrudRepository<Persona, Integer> {
     Optional<Persona> findByEmailAndPass(String email, String contrasena);
     Optional<Persona> findByEmail(String email);
+
     List<Peticion> findByNombre(String nombre);
 
 }
