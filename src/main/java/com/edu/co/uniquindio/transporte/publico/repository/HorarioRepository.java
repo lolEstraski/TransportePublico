@@ -13,6 +13,9 @@ public interface HorarioRepository extends CrudRepository<Horario,Integer> {
 
     Optional<Horario> findById(Integer id);
 
-//    @Query("select h from HORARIO h where h.listaRutaHorarioH =: idRuta")
-  //  List<Horario> obtenerListaHorarios(String nombreRuta);
+    @Query("select h from HORARIO h where h.listaRutaHorarioH =: idRuta")
+    List<Horario> obtenerListaHorarios(String nombreRuta);
+
+    Horario findBynombre(String nombreRuta);
+
 }

@@ -30,7 +30,6 @@ public class RutaFavoritaController implements IRutaFavoritaController {
     }
 
 
-
     @Override
     public void elimarRutaFavorita(EliminarRutaFavoritaRequest parametros) throws Exception {
         rutaFavoritaService.eliminarRutaFavorita(parametros);

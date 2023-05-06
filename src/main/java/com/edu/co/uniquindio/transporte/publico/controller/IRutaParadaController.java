@@ -1,5 +1,6 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
+import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import io.swagger.annotations.ApiOperation;
@@ -75,5 +76,15 @@ public interface IRutaParadaController {
             @ApiResponse( code = 400, message = "no existe ruta con plataforma", response = Exception.class )
     })
     List<Ruta> buscarRutasConPlataforma();
+
+
+    @GetMapping
+    @CrossOrigin(origins = "console.firebase.google.com")
+    @ApiOperation("Obtiene el horario de una ruta  ")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
+            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
+    })
+    ResponseEntity<Horario> getHorario(@PathVariable String nombreRuta);
 
 }

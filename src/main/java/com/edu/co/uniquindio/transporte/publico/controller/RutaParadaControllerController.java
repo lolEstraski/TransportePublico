@@ -1,8 +1,10 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 
+import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.HorarioDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
@@ -61,4 +63,10 @@ public class RutaParadaControllerController implements IRutaParadaController {
     public List<Ruta> buscarRutasConPlataforma() {
          return rutaService.buscarRutasConPlataforma(true);
         }
+
+    @Override
+    public ResponseEntity<Horario> getHorario(String nombreRuta) {
+        Horario horario= rutaService.getHorario(nombreRuta);
+        return ResponseEntity.ok(horario);
+    }
 }
