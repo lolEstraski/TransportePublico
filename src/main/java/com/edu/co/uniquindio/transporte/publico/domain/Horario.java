@@ -20,7 +20,9 @@ public class Horario implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-   private String hora;
+   private LocalTime horaInicio;
+
+   private LocalTime horaFin;
 
     private String dia;
 

@@ -4,6 +4,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.InformacionRuta;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
@@ -11,6 +12,7 @@ import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -105,6 +107,24 @@ public class RutaService {
             return rutaRepository.findByPlataforma(true);
         }
 
+
+    public InformacionRuta getInfoRuta(Integer rutaId) {
+
+       Ruta ruta= rutaRepository.findById(rutaId).get();
+       //buscar horario de la ruta
+        Horario horario = new Horario();
+       InformacionRuta infoRuta = new InformacionRuta();
+        infoRuta.setInfoDiscapacitados("No");
+        LocalTime horaActual = horario.getHoraInicio();
+        List<String> horarios = new ArrayList<>();
+        while (horaActual.equals(horario.getHoraFin())){
+            horaActual = horaActual.plusMinutes(ruta.getFrecuencia());
+            horarios.add(horaActual.toString());
+        }
+        infoRuta.setHorarios(horarios);
+        infoRuta.setDias(horario.getDia());
+        return infoRuta;
+    }
 
 
 

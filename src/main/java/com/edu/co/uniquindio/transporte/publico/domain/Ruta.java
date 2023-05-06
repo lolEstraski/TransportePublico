@@ -28,7 +28,7 @@ public class Ruta implements Serializable {
 
     private  String sentido;
 
-    private  String frecuencia;
+    private  long frecuencia;
 
     private boolean plataforma;
 
