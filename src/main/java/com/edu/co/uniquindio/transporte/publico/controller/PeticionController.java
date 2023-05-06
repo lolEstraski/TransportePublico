@@ -30,15 +30,13 @@ public class PeticionController implements IPeticionController {
     }
 
     @Override
-    public List<Peticion> obtenerPeticion( String nombre) {
-        List<Peticion> peticiones = peticionService.buscarPeticion(nombre);
-        return peticiones;
+    public List<Peticion> listarPeticionesPorNombrePersona( String nombre) {
+        return peticionService.listarPeticionesPorNombrePsajero(nombre);
     }
 
     @Override
-    public List<Peticion> obtenerPeticionCorreo(String email,String nombre) throws Exception {
-        List<Peticion> peticiones = peticionService.buscarPeticiones(email,nombre);
-        return peticiones;
+    public List<Peticion> obtenerPeticionCorreo(String email) throws Exception {
+        return peticionService.buscarPeticiones(email);
     }
 
 

@@ -38,19 +38,13 @@ public class PeticionService {
 
 
 
-    public List<Peticion> buscarPeticion(String nombre) {
-        return  peticionRepository.findByNombre(nombre);
+    public List<Peticion> listarPeticionesPorNombrePsajero(String nombre) {
+        return  peticionRepository.listByNombrePasajero(nombre);
 
     }
 
-    public List<Peticion> buscarPeticiones(String email, String nombre) throws Exception {
-        Optional<Persona>correoExistePasajero = pasajeroRepository.findByEmail(email);
-        if(correoExistePasajero.isEmpty()){
-            throw new Exception("El correo ingresado no existe");
-        }
-        List<Peticion> pqrs = pasajeroRepository.findByNombre(nombre);
-        pqrs.forEach(System.out::println);
-        return pqrs;
+    public List<Peticion> buscarPeticiones(String email) throws Exception {
+        return  peticionRepository.listByEmailPasajero(email);
     }
 
 

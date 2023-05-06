@@ -29,5 +29,9 @@ public class Peticion implements Serializable  {
 
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "pasajero", referencedColumnName = "id")
+    private Persona persona;
+
 
 }
