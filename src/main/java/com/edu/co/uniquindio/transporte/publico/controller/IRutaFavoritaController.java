@@ -1,12 +1,14 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
+import com.edu.co.uniquindio.transporte.publico.domain.RutaFavorita;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 public interface IRutaFavoritaController {
 
@@ -27,17 +29,7 @@ public interface IRutaFavoritaController {
             @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
             @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
     })
-    ResponseEntity<RutaDto> buscarRutaFavorita(@RequestParam String nombre, Integer id);
-
-
-    @PatchMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("Actualiza una ruta  ")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "Actualizacion exitosa", response = Ruta.class ),
-            @ApiResponse( code = 400, message = "Verificar Datos", response = Exception.class )
-    })
-    Ruta actualizarRutaFavorita(@RequestBody RutaFavoritaRequest parametros) throws Exception;
+    RutaFavoritaDto buscarRutaFavorita(@RequestParam String nombre, Integer id);
 
 
     @DeleteMapping
@@ -48,4 +40,8 @@ public interface IRutaFavoritaController {
             @ApiResponse( code = 400, message = "no se puede puede elimar por que esta ruta no existe", response = Exception.class )
     })
     void elimarRutaFavorita(EliminarRutaFavoritaRequest parametros) throws Exception;
+
+
+    @GetMapping(path = "RutaFavorita")
+    List<RutaFavorita> obtenerRutasFavoritas();
 }
