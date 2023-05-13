@@ -3,7 +3,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
@@ -21,6 +20,14 @@ public class PasajeroController implements IPasajeroController {
 
     private PasajeroService pasajeroService;
     private RutaService rutaService;
+
+    public PasajeroController() {
+
+    }
+
+    public PasajeroController(PasajeroService pasajeroServiceMock) {
+    }
+
 
     @Override
     public Persona registrarPasajero(Persona persona) throws Exception {
