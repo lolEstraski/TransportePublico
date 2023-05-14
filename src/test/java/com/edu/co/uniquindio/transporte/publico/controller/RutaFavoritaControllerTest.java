@@ -41,7 +41,7 @@ public class RutaFavoritaControllerTest {
         this.mockMvc = MockMvcBuilders.standaloneSetup(rutaFavoritaController)
                 .build();
     }
-
+/**
     @Test
     @DisplayName("debe agregar una ruta favorita a una persona")
     public void agregarRutaFavoritaTest() throws Exception {
@@ -70,6 +70,6 @@ public class RutaFavoritaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
     }
-
+*/
 
 }

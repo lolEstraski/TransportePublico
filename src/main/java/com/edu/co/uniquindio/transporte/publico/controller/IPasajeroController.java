@@ -32,8 +32,7 @@ public interface IPasajeroController {
     String recuperarContrasena(@RequestBody ContrasenaRequest parametros);
 */
 
-    @PatchMapping
-    @PostMapping
+    @PatchMapping(path = "{id}/contrasena")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("Actualizar contraseña")
     @ApiResponses({

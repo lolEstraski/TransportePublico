@@ -90,7 +90,7 @@ PasajeroController pasajeroController;
 
         // when
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/pasajero/1/contrasena")
+                        .patch("/pasajero/1/contrasena")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(request)))
                 .andExpect(status().isOk());
