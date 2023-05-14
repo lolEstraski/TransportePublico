@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static com.edu.co.uniquindio.transporte.publico.controller.JsonUtil.asJsonString;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,7 +41,7 @@ public class RutaFavoritaControllerTest {
         this.mockMvc = MockMvcBuilders.standaloneSetup(rutaFavoritaController)
                 .build();
     }
-/**
+
     @Test
     @DisplayName("debe agregar una ruta favorita a una persona")
     public void agregarRutaFavoritaTest() throws Exception {
@@ -59,17 +59,17 @@ public class RutaFavoritaControllerTest {
         FavoritaResponseValido.setIdPersona(validIdPersona);
         FavoritaResponseValido.setIdRuta(validIdRuta);
 
-        Mockito.when(rutaFavoritaServiceMock.agregarRutaFavorita(eq(idPersona), eq(idRuta))).thenReturn(FavoritaResponseValido));
+        Mockito.doNothing().when(rutaFavoritaServiceMock).agregarRutaFavorita(eq(validIdPersona), eq(validIdRuta));
 
         //then / Entonces
         mockMvc.perform( MockMvcRequestBuilders
-                        .post("/rutaFavorita")
+                        .post("/ruta/favorita/1/favorita/ruta/2/")
                         .content(asJsonString(FavoritaResponseValido))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
     }
-*/
+
 
 }

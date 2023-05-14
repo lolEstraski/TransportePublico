@@ -13,14 +13,14 @@ import java.util.List;
 public interface IRutaFavoritaController {
 
 
-    @PostMapping("{id}/favorita/ruta/{id}")
+    @PostMapping("{idPersona}/favorita/ruta/{idRuta}")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("Agrega una ruta favorita  ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "Ruta agregada con  exito", response = Ruta.class ),
             @ApiResponse( code = 400, message = "no se puede agregar", response = Exception.class )
     })
-    void agregarRutaFavorita(@RequestParam Integer idPersona,Integer idRuta);
+    void agregarRutaFavorita(@PathVariable Integer idPersona,@PathVariable Integer idRuta);
 
     @GetMapping
     @CrossOrigin(origins = "console.firebase.google.com")

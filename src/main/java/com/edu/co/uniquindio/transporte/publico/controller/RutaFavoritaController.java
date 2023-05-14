@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/RutaFavorita")
+@RequestMapping("/ruta/favorita")
 @AllArgsConstructor
 public class RutaFavoritaController implements IRutaFavoritaController {
 
