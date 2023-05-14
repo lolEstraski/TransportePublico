@@ -62,7 +62,7 @@ public class PeticionControllerTests {
         peticionValida.setId(validId);
         Mockito.when(peticionServiceMock.crearPeticion(any())).thenReturn(peticionValida);
         // then / Entonces
-        mockMvc.perform(MockMvcRequestBuilders.post("/peticion")
+        mockMvc.perform(MockMvcRequestBuilders.post("/pqrs")
                         .content(asJsonString(peticionRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -86,7 +86,7 @@ public class PeticionControllerTests {
 
         // when / cuando
         mockMvc.perform( MockMvcRequestBuilders
-                        .post("/peticion?nombre")
+                        .get("/pqrs/nombre/Juan")
                         .content(asJsonString(peticiones))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
