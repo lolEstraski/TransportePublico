@@ -83,17 +83,16 @@ PasajeroController pasajeroController;
         request.setPass("passwordAntigua");
         request.setNuevaContrasena("passwordNueva");
 
-        PasajeroService pasajeroServiceMock = Mockito.mock(PasajeroService.class);
         Mockito.doNothing().when(pasajeroServiceMock).actualizarContrasena(anyInt(), anyString(), anyString());
-
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PasajeroController(pasajeroServiceMock)).build();
 
         // when
         mockMvc.perform(MockMvcRequestBuilders
                         .patch("/pasajero/1/contrasena")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(request)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Contraseña actualizada exitosamente."));;
+
 
         // then
         Mockito.verify(pasajeroServiceMock).actualizarContrasena(eq(1), eq("passwordAntigua"), eq("passwordNueva"));
