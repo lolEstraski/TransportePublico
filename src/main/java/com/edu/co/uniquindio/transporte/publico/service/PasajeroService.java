@@ -2,8 +2,12 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
+import liquibase.pro.packaged.A;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,14 +18,20 @@ import java.util.Optional;
 public class PasajeroService {
 
     @Autowired
+    private InMemoryUserDetailsManager inMemoryUserDetailsManager;
+
+    @Autowired
     private PasajeroRepository pasajeroRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private EmailService emailService;
 
 
     public Persona registrarPasajero(Persona persona) throws Exception {
 
-        Persona pasajeroRegistrado = null;
+        Persona pasajeroRegistrado;
         boolean correoExiste = esRepetido(persona.getEmail());
         if (correoExiste) {
             throw new Exception("El Correo ya esta en Uso");
@@ -33,11 +43,16 @@ public class PasajeroService {
         }
         var pasajeroRegistrar = new Persona();
         pasajeroRegistrar.setCedula(persona.getCedula());
-        pasajeroRegistrar.setPass(persona.getNombre());
+        pasajeroRegistrar.setPass(persona.getPass());
         pasajeroRegistrar.setNombre(persona.getNombre());
         pasajeroRegistrar.setEmail(persona.getEmail());
         pasajeroRegistrar.setTelefono(persona.getTelefono());
         pasajeroRegistrado = pasajeroRepository.save(pasajeroRegistrar);
+        var user = User.withUsername(pasajeroRegistrar.getEmail())
+                .password(passwordEncoder.encode(persona.getPass()))
+                .roles("USER")
+                .build();
+        inMemoryUserDetailsManager.createUser(user);
         emailService.enviarEmail("Registro de cuenta en Tpublico", "Hola " + pasajeroRegistrado.getNombre() + " es un gusto que haya registrado en TPublico, para activar su cuenta ingrese en el siguiente link: url", pasajeroRegistrado.getEmail());
         return pasajeroRegistrado;
     }

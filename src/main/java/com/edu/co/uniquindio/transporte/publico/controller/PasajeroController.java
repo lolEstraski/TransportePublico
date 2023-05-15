@@ -19,14 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PasajeroController implements IPasajeroController {
 
     private PasajeroService pasajeroService;
-    private RutaService rutaService;
-
-    public PasajeroController() {
-
-    }
-
-    public PasajeroController(PasajeroService pasajeroServiceMock) {
-    }
 
 
     @Override
@@ -39,7 +31,6 @@ public class PasajeroController implements IPasajeroController {
         pasajeroService.actualizarContrasena(id, parametros.getPass(), parametros.getNuevaContrasena());
         return ResponseEntity.ok("Contraseña actualizada exitosamente.");
     }
-
 
     /**
     @Override

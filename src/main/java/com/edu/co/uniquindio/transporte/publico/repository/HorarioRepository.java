@@ -11,11 +11,12 @@ import java.util.Optional;
 @Repository
 public interface HorarioRepository extends CrudRepository<Horario,Integer> {
 
-    Optional<Horario> findById(Integer id);
+    @Query( value = "select * from HORARIOS h where h.idRuta =:idRuta"
+    , nativeQuery = true)
+    List<Horario> obtenerHorariosPorIdRuta(Integer idRuta);
 
-    @Query("select h from HORARIO h where h.listaRutaHorarioH =: idRuta")
-    List<Horario> obtenerListaHorarios(String nombreRuta);
-
-    Horario findBynombre(String nombreRuta);
+    @Query( value = "select h.* from HORARIOS h join Rutas r on h.idRuta = r.id where r.nombre =:nombreRuta"
+    , nativeQuery = true)
+    List<Horario> obtenerHorariosPorNombreRuta(String nombreRuta);
 
 }

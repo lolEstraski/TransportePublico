@@ -1,13 +1,13 @@
 databaseChangeLog:
   -  changeSet:
-       id:  create-admin-tables
+       id:  create-initial-tables
        author:  andres
        changes:
          -  sqlFile:
               dbms:  'h2'
               endDelimiter:  \nGO
               splitStatements:  true
-              path:  /db/changelog/createAdminTables.sql
+              path:  /db/changelog/createTables.sql
               stripComments:  false
   -  changeSet:
         id: add-default-admin-data
@@ -19,23 +19,3 @@ databaseChangeLog:
               splitStatements: true
               path: /db/changelog/addDefaultAdminData.sql
               stripComments: false
-  -  changeSet:
-        id: create-ruta-table
-        author: andres
-        changes:
-          - sqlFile:
-              dbms: 'h2'
-              endDelimiter: \nGO
-              splitStatements: true
-              path: /db/changelog/createRutaTables.sql
-              stripComments: false
-  -  changeSet:
-        id: create-ruta-table
-        author: andres
-        changes:
-          - sqlFile:
-             dbms: 'h2'
-             endDelimiter: \nGO
-             splitStatements: true
-             path: /db/changelog/actualizarRutaTables.sql
-             stripComments: false

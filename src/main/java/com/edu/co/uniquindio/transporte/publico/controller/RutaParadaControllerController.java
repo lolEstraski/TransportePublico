@@ -64,9 +64,4 @@ public class RutaParadaControllerController implements IRutaParadaController {
          return rutaService.buscarRutasConPlataforma(true);
         }
 
-    @Override
-    public ResponseEntity<Horario> getHorario(String nombreRuta) {
-        Horario horario= rutaService.getHorario(nombreRuta);
-        return ResponseEntity.ok(horario);
-    }
 }

@@ -77,14 +77,4 @@ public interface IRutaParadaController {
     })
     List<Ruta> buscarRutasConPlataforma();
 
-
-    @GetMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("Obtiene el horario de una ruta  ")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
-            @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
-    })
-    ResponseEntity<Horario> getHorario(@PathVariable String nombreRuta);
-
 }

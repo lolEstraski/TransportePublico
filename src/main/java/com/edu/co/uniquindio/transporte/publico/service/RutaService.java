@@ -101,21 +101,6 @@ public class RutaService {
         return infoRuta;
     }
 
-
-
-    public Horario getHorario(String nombreRuta) {
-        Horario horario= horarioRepository.findBynombre(nombreRuta);
-        if (horario != null) {
-            Horario horarios = new Horario();
-            horario.setDia(horario.getDia());
-            horario.setHoraInicio(horario.getHoraInicio());
-            horario.setHoraFin(horario.getHoraFin());
-            return horario;
-        } else {
-            return null;
-        }
-    }
-
 }
 
 

@@ -3,15 +3,12 @@ package com.edu.co.uniquindio.transporte.publico.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
 
 
-@Entity( name = "HORARIO")
+@Entity( name = "HORARIOS")
 @Data
 @NoArgsConstructor
 public class Horario implements Serializable {
@@ -26,6 +23,9 @@ public class Horario implements Serializable {
 
     private String dia;
 
+    @ManyToOne
+    @JoinColumn(name = "idRuta", referencedColumnName = "id")
+    private Ruta ruta;
 
 
 }
