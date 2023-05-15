@@ -7,6 +7,8 @@ import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -16,13 +18,12 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class RutaService {
-
+    @Autowired
     private RutaRepository rutaRepository;
 
     private HorarioRepository horarioRepository;
-
-
 
     public Ruta crearRuta (RutaRequest parametros){
 
