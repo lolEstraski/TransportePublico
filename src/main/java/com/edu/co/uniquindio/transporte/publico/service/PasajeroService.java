@@ -42,10 +42,10 @@ public class PasajeroService {
         return pasajeroRegistrado;
     }
 
-    private boolean esRepetido(String email){
+    boolean esRepetido(String email){
         return pasajeroRepository.findByEmail(email).orElse(null) != null;
     }
-    private boolean cedulaRepetida(Integer cedula) {
+    boolean cedulaRepetida(Integer cedula) {
         return pasajeroRepository.existsById(cedula);
     }
 
