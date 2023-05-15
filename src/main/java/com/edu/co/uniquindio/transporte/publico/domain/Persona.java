@@ -23,8 +23,5 @@ public class Persona implements Serializable {
     private String email;
     private  String pass;
 
-    @ManyToMany
-    @JoinColumn(name = "ruta", referencedColumnName = "id")
-    private List<Ruta> RutaFavorita;
 
 }

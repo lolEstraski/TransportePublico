@@ -1,6 +1,8 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 
+import com.edu.co.uniquindio.transporte.publico.domain.Persona;
+import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.domain.RutaFavorita;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaFavoritaDto;
 import com.edu.co.uniquindio.transporte.publico.service.RutaFavoritaService;
@@ -47,24 +49,26 @@ public class RutaFavoritaControllerTest {
     public void agregarRutaFavoritaTest() throws Exception {
         //given /dado que
         var  rutaFavoritaValida=new RutaFavoritaDto();
-        rutaFavoritaValida.setNombre("b1");
-        rutaFavoritaValida.setDestino("centro");
-        rutaFavoritaValida.setFrecuencia(15);
         rutaFavoritaValida.setIdRuta(1);
         rutaFavoritaValida.setIdPersona(2);
         // when / cuando
-       var FavoritaResponseValido = new RutaFavoritaDto();
-       var validIdRuta=(1);
-       var validIdPersona=(2);
-        FavoritaResponseValido.setIdPersona(validIdPersona);
-        FavoritaResponseValido.setIdRuta(validIdRuta);
+        var validIdRuta=(1);
+        var validIdPersona=(2);
+        var favoritaResponseValido = new RutaFavorita();
+        var validPersona = new Persona();
+        validPersona.setId(validIdPersona);
+        var validRuta = new Ruta();
+        validRuta.setId(validIdRuta);
+        favoritaResponseValido.setId(1);
+        favoritaResponseValido.setPersona(validPersona);
+        favoritaResponseValido.setRuta(validRuta);
 
-        Mockito.doNothing().when(rutaFavoritaServiceMock).agregarRutaFavorita(eq(validIdPersona), eq(validIdRuta));
+        Mockito.when(rutaFavoritaServiceMock.agregarRutaFavorita(eq(validIdPersona), eq(validIdRuta))).thenReturn(favoritaResponseValido);
 
         //then / Entonces
         mockMvc.perform( MockMvcRequestBuilders
-                        .post("/ruta/favorita/1/favorita/ruta/2/")
-                        .content(asJsonString(FavoritaResponseValido))
+                        .post("/ruta/favorita")
+                        .content(asJsonString(rutaFavoritaValida))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

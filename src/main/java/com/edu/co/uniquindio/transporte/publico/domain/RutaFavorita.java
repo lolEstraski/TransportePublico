@@ -1,10 +1,16 @@
 package com.edu.co.uniquindio.transporte.publico.domain;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity( name = "RUTAS_FAVORITAS")
+@Data
 public class RutaFavorita {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
     private String nombre;
 
     @ManyToOne

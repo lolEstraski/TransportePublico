@@ -7,6 +7,7 @@ import com.edu.co.uniquindio.transporte.publico.domain.RutaFavorita;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaFavoritaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaFavoritaDto;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaFavoritaRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
@@ -25,13 +26,16 @@ public class RutaFavoritaService {
     private PasajeroRepository pasajeroRepository;
 
 
-    public void agregarRutaFavorita(Integer idPersona, Integer idRuta) {
-        Persona persona=pasajeroRepository.findById(idPersona).orElseThrow(() -> new EntityNotFoundException("No se pudo encontrar la persona con el ID: " + idPersona));
-        Ruta ruta= rutaRepository.findById(idRuta).orElseThrow(() -> new EntityNotFoundException("No se pudo encontrar la persona con el ID: " + idRuta));
-        List<Ruta> RutaFavorita=persona.getRutaFavorita();
-        RutaFavorita.add(ruta);
-        persona.setRutaFavorita(RutaFavorita);
-        pasajeroRepository.save(persona);
+    public RutaFavorita agregarRutaFavorita(Integer idPersona, Integer idRuta) throws TPublicoException {
+        Persona persona=pasajeroRepository.findById(idPersona)
+                .orElseThrow(() -> new TPublicoException("No se pudo encontrar la persona con el ID: " + idPersona));
+        Ruta ruta= rutaRepository.findById(idRuta)
+                .orElseThrow(() -> new TPublicoException("No se pudo encontrar la persona con el ID: " + idRuta));
+        var rutaFavorita = new RutaFavorita();
+        rutaFavorita.setRuta(ruta);
+        rutaFavorita.setPersona(persona);
+        rutaFavorita.setNombre(ruta.getNombre());
+        return rutaFavoritaRepository.save(rutaFavorita);
     }
 
 
@@ -56,8 +60,8 @@ public class RutaFavoritaService {
         ruta.ifPresent(ruta1 -> rutaFavoritaRepository.delete(ruta1));
     }
 
-    public List<RutaFavorita> obtenerRutasFavoritas() {
-        return (List<RutaFavorita>) rutaFavoritaRepository.findAll();
+    public List<RutaFavorita> obtenerRutasFavoritasPorPersona(Integer idPersona) {
+        return rutaFavoritaRepository.findByIdPersona(idPersona);
     }
 
 }
