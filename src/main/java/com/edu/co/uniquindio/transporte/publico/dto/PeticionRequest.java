@@ -2,6 +2,7 @@ package com.edu.co.uniquindio.transporte.publico.dto;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -16,7 +17,7 @@ public class PeticionRequest {
 
     private String tipo;
 
-    private Date fecha;
+    private LocalDateTime fecha;
 
     private String estado;
 

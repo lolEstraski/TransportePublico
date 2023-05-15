@@ -19,7 +19,10 @@ import java.util.Optional;
 public class RutaService {
 
     private RutaRepository rutaRepository;
+
     private HorarioRepository horarioRepository;
+
+
 
     public Ruta crearRuta (RutaRequest parametros){
 

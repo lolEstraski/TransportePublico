@@ -47,7 +47,7 @@ public class PeticionControllerTests {
 
 
     @Test
-    @DisplayName("debe registrar a  un nuevo  usuario")
+    @DisplayName("debe crear una nueva peticion")
     public void crearPeticionTest() throws Exception {
         // given / dado que
         var peticionRequest = new PeticionRequest();

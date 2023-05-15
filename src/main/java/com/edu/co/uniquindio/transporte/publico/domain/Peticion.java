@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity( name = "PQRS")
 @Data
@@ -25,7 +25,7 @@ public class Peticion implements Serializable  {
 
     private String tipo;
 
-    private Date fecha;
+    private LocalDateTime fecha;
 
     private String estado;
 
