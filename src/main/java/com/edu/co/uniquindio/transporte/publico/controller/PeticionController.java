@@ -5,7 +5,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
 import com.edu.co.uniquindio.transporte.publico.dto.PeticionRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.service.PeticionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

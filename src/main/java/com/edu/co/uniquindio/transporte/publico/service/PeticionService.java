@@ -1,10 +1,8 @@
 package com.edu.co.uniquindio.transporte.publico.service;
 
-import com.edu.co.uniquindio.transporte.publico.domain.Persona;
+
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
 import com.edu.co.uniquindio.transporte.publico.dto.PeticionRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
-import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.PeticionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor

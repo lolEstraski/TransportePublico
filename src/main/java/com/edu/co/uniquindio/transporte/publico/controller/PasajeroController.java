@@ -4,7 +4,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
-import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
 
 

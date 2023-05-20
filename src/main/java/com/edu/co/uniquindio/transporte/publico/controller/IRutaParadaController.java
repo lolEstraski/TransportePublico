@@ -1,6 +1,5 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
-import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import io.swagger.annotations.ApiOperation;

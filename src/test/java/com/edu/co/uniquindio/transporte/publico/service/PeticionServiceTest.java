@@ -2,8 +2,6 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
-import com.edu.co.uniquindio.transporte.publico.dto.PeticionRequest;
-import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.PeticionRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,12 +9,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.threeten.bp.LocalDate;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

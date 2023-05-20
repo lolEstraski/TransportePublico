@@ -2,7 +2,6 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
-import liquibase.pro.packaged.A;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
