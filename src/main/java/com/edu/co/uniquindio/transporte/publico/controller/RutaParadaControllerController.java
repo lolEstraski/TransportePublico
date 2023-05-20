@@ -32,8 +32,8 @@ public class RutaParadaControllerController implements IRutaParadaController {
 
 
     @Override
-    public ResponseEntity<RutaDto> buscarRuta(String nombre, Integer id) {
-        var ruta = rutaService.buscarRuta(nombre,id);
+    public ResponseEntity<RutaDto> buscarRuta( Integer id) {
+        var ruta = rutaService.buscarRuta(id);
         return ResponseEntity.ok(ruta);
 
     }

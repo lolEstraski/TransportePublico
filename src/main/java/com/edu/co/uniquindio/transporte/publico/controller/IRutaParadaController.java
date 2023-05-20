@@ -32,7 +32,7 @@ public interface IRutaParadaController {
             @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
             @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
     })
-    ResponseEntity<RutaDto> buscarRuta(@RequestParam String nombre,Integer id);
+    ResponseEntity<RutaDto> buscarRuta(@RequestParam Integer id);
 
 
     @PatchMapping
