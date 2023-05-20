@@ -37,27 +37,41 @@ public class RutaServiceTest {
     private RutaService rutaService;
     private com.edu.co.uniquindio.transporte.publico.domain.Ruta Ruta;
 
-    /**
-     * @Test
-     * @DisplayName("CrearUnaRutaSiNoExisteOtraConElMismoNombre") void crearRutaTest() {
-     * <p>
-     * RutaRequest parametros = new RutaRequest();
-     * parametros.setNombre("nombre de la ruta");
-     * parametros.setFrecuencia(2);
-     * parametros.setSentido("sentido de la ruta");
-     * <p>
-     * <p>
-     * when(rutaRepositoryMock.findByNombreOrId(parametros.getNombre(), null)).thenReturn(Optional.empty());
-     * <p>
-     * RutaService rutaService =new RutaService();
-     * Ruta rutaCreada = rutaService.crearRuta(parametros);
-     * <p>
-     * assertNotNull(rutaCreada);
-     * assertEquals(parametros.getNombre(), rutaCreada.getNombre());
-     * assertEquals(parametros.getFrecuencia(), rutaCreada.getFrecuencia());
-     * assertEquals(parametros.getSentido(), rutaCreada.getSentido());
-     * }
-     */
+
+      @Test
+      @DisplayName("CrearUnaRutaSiNoExisteOtraConElMismoNombre") void crearRutaTest() {
+
+      RutaRequest parametros = new RutaRequest();
+      parametros.setNombre("nombre de la ruta");
+      parametros.setFrecuencia(2);
+      parametros.setSentido("sentido de la ruta");
+
+     when(rutaRepositoryMock.findByNombreOrId(parametros.getNombre(), null)).thenReturn(Optional.empty());
+
+      RutaService rutaService =new RutaService();
+      Ruta rutaCreada = rutaService.crearRuta(parametros);
+      assertNotNull(rutaCreada);
+      assertEquals(parametros.getNombre(), rutaCreada.getNombre());
+      assertEquals(parametros.getFrecuencia(), rutaCreada.getFrecuencia());
+      assertEquals(parametros.getSentido(), rutaCreada.getSentido());
+      }
+
+
+    @Test
+    public void testCrearRuta() {
+
+        RutaRequest parametros = new RutaRequest();
+        parametros.setFrecuencia(1);
+        parametros.setSentido("Ida");
+        parametros.setNombre("Ruta 1");
+
+        RutaService rutaService = new RutaService();
+
+        Ruta rutaCreada = rutaService.crearRuta(parametros);
+
+
+        assertNotNull(rutaCreada);
+    }
 
 
     @Test
@@ -83,39 +97,38 @@ public class RutaServiceTest {
         assertEquals(rutaSimulada.getFrecuencia(), rutaDto.getFrecuencia());
     }
 
-    /**
-     * @Test public void testActualizarRuta() throws Exception {
-     * <p>
-     * Ruta rutaExistente = new Ruta();
-     * rutaExistente.setNombre("ruta1");
-     * rutaExistente.setFrecuencia(2);
-     * rutaExistente.setSentido("vuelta");
-     * rutaExistente.setDestino("norte");
-     * rutaExistente.setOrigen("sur");
-     * Optional<Ruta> optionalRuta = Optional.of(rutaExistente);
-     * when(rutaRepositoryMock.findByNombreOrId(eq("ruta1"), isNull())).thenReturn(optionalRuta);
-     * <p>
-     * RutaRequest parametros = new RutaRequest();
-     * parametros.setNombre("ruta1");
-     * parametros.setFrecuencia(2);
-     * parametros.setSentido("ida");
-     * <p>
-     * Ruta rutaActualizada = new Ruta();
-     * rutaActualizada.setNombre("ruta2");
-     * rutaActualizada.setFrecuencia(3);
-     * rutaActualizada.setSentido("ida");
-     * rutaActualizada.setDestino("sur");
-     * rutaActualizada.setOrigen("norte");
-     * when(rutaRepositoryMock.save(Ruta)).thenReturn(rutaActualizada);
-     * <p>
-     * Ruta resultado = rutaService.actualizarRuta(parametros);
-     * <p>
-     * verify(rutaRepositoryMock, times(1)).findByNombreOrId(eq("ruta1"), isNull());
-     * verify(rutaRepositoryMock, times(1)).save(rutaExistente);
-     * <p>
-     * assertEquals(rutaActualizada, resultado);
-     * }
-     */
+    @Test
+    public void testActualizarRuta() throws Exception {
+
+        Ruta rutaExistente = new Ruta();
+        rutaExistente.setNombre("ruta1");
+        rutaExistente.setFrecuencia(2);
+        rutaExistente.setSentido("vuelta");
+        rutaExistente.setDestino("norte");
+        rutaExistente.setOrigen("sur");
+        Optional<Ruta> optionalRuta = Optional.of(rutaExistente);
+        when(rutaRepositoryMock.findByNombreOrId(eq("ruta1"), isNull())).thenReturn(optionalRuta);
+
+        RutaRequest parametros = new RutaRequest();
+        parametros.setNombre("ruta1");
+        parametros.setFrecuencia(2);
+        parametros.setSentido("ida");
+
+        Ruta rutaActualizada = new Ruta();
+        rutaActualizada.setNombre("ruta2");
+        rutaActualizada.setFrecuencia(3);
+        rutaActualizada.setSentido("ida");
+        rutaActualizada.setDestino("sur");
+        rutaActualizada.setOrigen("norte");
+        when(rutaRepositoryMock.save(Ruta)).thenReturn(rutaActualizada);
+
+        Ruta resultado = rutaService.actualizarRuta(parametros);
+
+        verify(rutaRepositoryMock, times(1)).findByNombreOrId(eq("ruta1"), isNull());
+        verify(rutaRepositoryMock, times(1)).save(rutaExistente);
+
+        assertEquals(rutaActualizada, resultado);
+    }
 
 
     @Test
