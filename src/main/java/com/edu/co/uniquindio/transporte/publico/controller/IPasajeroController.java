@@ -41,4 +41,7 @@ public interface IPasajeroController {
     })
     ResponseEntity<String> actualizarContrasena(@PathVariable Integer id,@RequestBody ActualizarContrasenaRequest parametros) throws Exception;
 
+
+
+    
 }

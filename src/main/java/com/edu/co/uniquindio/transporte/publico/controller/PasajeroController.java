@@ -3,10 +3,12 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
+import com.edu.co.uniquindio.transporte.publico.repository.FeedbackRepository;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import lombok.AllArgsConstructor;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pasajero")
 @AllArgsConstructor
 public class PasajeroController implements IPasajeroController {
+
+    @Autowired
 
     private PasajeroService pasajeroService;
 
@@ -30,6 +34,9 @@ public class PasajeroController implements IPasajeroController {
         pasajeroService.actualizarContrasena(id, parametros.getPass(), parametros.getNuevaContrasena());
         return ResponseEntity.ok("Contraseña actualizada exitosamente.");
     }
+
+
+
 
     /**
     @Override

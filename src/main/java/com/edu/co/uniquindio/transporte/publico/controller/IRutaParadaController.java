@@ -54,7 +54,7 @@ public interface IRutaParadaController {
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
 
-   @GetMapping(path = "Ruta")
+   @GetMapping(path = "ruta")
     List<Ruta> obtenerRutas();
 
     @GetMapping(path = "Rutas")
@@ -67,7 +67,7 @@ public interface IRutaParadaController {
     List<RutaDto> obtenerRutas(@PathVariable String origen, @PathVariable String destino);
 
 
-    @GetMapping(path = "Rutass")
+    @GetMapping(path = "rutass")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("busca una ruta  que contengan plataforma ")
     @ApiResponses({
