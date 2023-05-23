@@ -3,7 +3,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
-import com.edu.co.uniquindio.transporte.publico.repository.FeedbackRepository;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import lombok.AllArgsConstructor;
 
@@ -35,7 +34,11 @@ public class PasajeroController implements IPasajeroController {
         return ResponseEntity.ok("Contraseña actualizada exitosamente.");
     }
 
-
+    @Override
+    public ResponseEntity<String> calificar(Integer calificacion , Integer id) throws Exception {
+        pasajeroService.calificarfeedback(calificacion ,id);
+        return ResponseEntity.ok("retroalimentacion exitosa.");
+    }
 
 
     /**
