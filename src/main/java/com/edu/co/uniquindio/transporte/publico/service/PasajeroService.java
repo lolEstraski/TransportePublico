@@ -2,7 +2,6 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
-import liquibase.pro.packaged.A;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -93,6 +92,17 @@ public class PasajeroService {
         }
     }
 
+    public void calificarfeedback(Integer calificacion, Integer id) throws Exception {
+      var persona=  buscarPorId(id) ;
+      if (persona ==null){
+          throw new Exception(" no hay persona con dicho id");
+      }
+      if( calificacion <1 ||  calificacion>5){
+          throw  new Exception("la calificacion es del 1 al 5 no lo olvide");
+      }
+         persona.setCalificacion(calificacion);
+        pasajeroRepository.save(persona);
+    }
 
 
 /**

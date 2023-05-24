@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
 
 
 @Entity( name = "PASAJEROS")
@@ -22,6 +22,7 @@ public class Persona implements Serializable {
     private String telefono;
     private String email;
     private  String pass;
+    private  Integer calificacion;
 
 
 }

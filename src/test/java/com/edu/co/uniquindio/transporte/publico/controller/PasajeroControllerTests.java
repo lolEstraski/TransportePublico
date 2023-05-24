@@ -2,8 +2,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.LoginRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.PersonaDto;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

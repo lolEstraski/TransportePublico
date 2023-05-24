@@ -10,16 +10,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.doThrow;
+
 
 @ExtendWith(MockitoExtension.class)
 public class EmailServiceTests {

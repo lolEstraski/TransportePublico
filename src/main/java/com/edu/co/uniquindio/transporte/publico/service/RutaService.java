@@ -7,6 +7,8 @@ import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -16,9 +18,11 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class RutaService {
-
+    @Autowired
     private RutaRepository rutaRepository;
+
     private HorarioRepository horarioRepository;
 
     public Ruta crearRuta (RutaRequest parametros){
@@ -36,9 +40,12 @@ public class RutaService {
         return rutaCreada;
     }
 
-    public RutaDto buscarRuta (String nombre, Integer id){
+
+
+
+    public RutaDto buscarRuta (Integer id){
         RutaDto rutaDto = null;
-        var ruta = rutaRepository.findByNombreOrId(nombre, id);
+        var ruta = rutaRepository.findById( id);
         rutaDto = ruta.map( ruta1 ->  {
             var rutaTemporal = new RutaDto();
             rutaTemporal.setId(ruta1.getId());
@@ -59,6 +66,8 @@ public class RutaService {
             ruta.setNombre(parametros.getNombre());
             ruta.setFrecuencia(parametros.getFrecuencia());
             ruta.setSentido(parametros.getSentido());
+            ruta.setOrigen(parametros.getOrigen());
+            ruta.setDestino(parametros.getDestino());
             return rutaRepository.save(ruta);
         }else{
             throw new Exception("la ruta no exite");
@@ -100,6 +109,8 @@ public class RutaService {
         infoRuta.setDias(horario.getDia());
         return infoRuta;
     }
+
+
 
 }
 

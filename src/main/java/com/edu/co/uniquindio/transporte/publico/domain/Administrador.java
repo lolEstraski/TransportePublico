@@ -1,6 +1,6 @@
 package com.edu.co.uniquindio.transporte.publico.domain;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

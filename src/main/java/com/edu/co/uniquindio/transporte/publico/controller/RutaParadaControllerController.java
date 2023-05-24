@@ -1,10 +1,9 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 
-import com.edu.co.uniquindio.transporte.publico.domain.Horario;
+
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.HorarioDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
@@ -13,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController()
@@ -32,8 +31,8 @@ public class RutaParadaControllerController implements IRutaParadaController {
 
 
     @Override
-    public ResponseEntity<RutaDto> buscarRuta(String nombre, Integer id) {
-        var ruta = rutaService.buscarRuta(nombre,id);
+    public ResponseEntity<RutaDto> buscarRuta( Integer id) {
+        var ruta = rutaService.buscarRuta(id);
         return ResponseEntity.ok(ruta);
 
     }
@@ -55,8 +54,7 @@ public class RutaParadaControllerController implements IRutaParadaController {
 
     @Override
     public List<RutaDto> obtenerRutas( String origen,  String destino) {
-        List<RutaDto> rutas = rutaService.buscarRutas(origen, destino);
-        return rutas;
+        return rutaService.buscarRutas(origen, destino);
     }
 
     @Override

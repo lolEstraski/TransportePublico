@@ -1,9 +1,7 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
-import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.PeticionRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

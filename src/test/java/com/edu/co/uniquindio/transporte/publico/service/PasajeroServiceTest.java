@@ -3,6 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -162,4 +163,21 @@ public class PasajeroServiceTest {
         verify(pasajeroRepositoryMock, never()).save(any(Persona.class));
     }
 
+
+    @Test
+    public void testCalificarFeedback() throws Exception {
+
+        Integer calificacion = 4;
+        Integer id = 1;
+        Persona persona = new Persona();
+        persona.setId(id);
+        persona.setCalificacion(calificacion);
+
+        when(pasajeroService.buscarPorId(id)).thenReturn(persona);
+
+        pasajeroService.calificarfeedback(calificacion, id);
+
+        Assertions.assertEquals(calificacion, persona.getCalificacion());
+
+    }
 }

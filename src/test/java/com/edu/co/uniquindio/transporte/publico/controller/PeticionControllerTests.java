@@ -3,7 +3,6 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
 import com.edu.co.uniquindio.transporte.publico.dto.PeticionRequest;
 import com.edu.co.uniquindio.transporte.publico.service.PeticionService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -26,7 +23,6 @@ import java.util.List;
 import static com.edu.co.uniquindio.transporte.publico.controller.JsonUtil.asJsonString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.springframework.http.RequestEntity.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -47,7 +43,7 @@ public class PeticionControllerTests {
 
 
     @Test
-    @DisplayName("debe registrar a  un nuevo  usuario")
+    @DisplayName("debe crear una nueva peticion")
     public void crearPeticionTest() throws Exception {
         // given / dado que
         var peticionRequest = new PeticionRequest();
@@ -58,7 +54,6 @@ public class PeticionControllerTests {
         // when / Cuando
         var peticionValida = new Peticion();
         var validId = 1;
-        var validNombre = "reclamacion";
         peticionValida.setId(validId);
         Mockito.when(peticionServiceMock.crearPeticion(any())).thenReturn(peticionValida);
         // then / Entonces

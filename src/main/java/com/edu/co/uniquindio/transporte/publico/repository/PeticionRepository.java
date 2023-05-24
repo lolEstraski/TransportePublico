@@ -1,8 +1,6 @@
 package com.edu.co.uniquindio.transporte.publico.repository;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Peticion;
-import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

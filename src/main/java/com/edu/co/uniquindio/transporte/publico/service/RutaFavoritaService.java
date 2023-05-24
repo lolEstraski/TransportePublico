@@ -5,7 +5,6 @@ import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.domain.RutaFavorita;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaFavoritaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaFavoritaDto;
 import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
@@ -14,7 +13,6 @@ import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service

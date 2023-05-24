@@ -22,8 +22,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static com.edu.co.uniquindio.transporte.publico.controller.JsonUtil.asJsonString;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)

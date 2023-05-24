@@ -1,6 +1,5 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
-import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +31,7 @@ public interface IRutaParadaController {
             @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
             @ApiResponse( code = 400, message = "Verificar  datos", response = Exception.class )
     })
-    ResponseEntity<RutaDto> buscarRuta(@RequestParam String nombre,Integer id);
+    ResponseEntity<RutaDto> buscarRuta(@RequestParam Integer id);
 
 
     @PatchMapping
@@ -55,7 +54,7 @@ public interface IRutaParadaController {
     void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
 
 
-   @GetMapping(path = "Ruta")
+   @GetMapping(path = "ruta")
     List<Ruta> obtenerRutas();
 
     @GetMapping(path = "Rutas")
@@ -68,7 +67,7 @@ public interface IRutaParadaController {
     List<RutaDto> obtenerRutas(@PathVariable String origen, @PathVariable String destino);
 
 
-    @GetMapping(path = "Rutass")
+    @GetMapping(path = "rutass")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("busca una ruta  que contengan plataforma ")
     @ApiResponses({
