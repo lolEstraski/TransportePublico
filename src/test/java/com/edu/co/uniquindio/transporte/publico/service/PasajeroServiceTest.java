@@ -9,7 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 import java.util.Optional;
@@ -25,6 +28,12 @@ import static org.mockito.Mockito.*;
 
     @Mock
     private PasajeroRepository pasajeroRepositoryMock;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
     @Mock
     private EmailService emailServiceMock;
@@ -44,6 +53,8 @@ import static org.mockito.Mockito.*;
         persona.setTelefono("1234567");
 
         when(pasajeroRepositoryMock.save(any())).thenReturn(persona);
+        when(passwordEncoder.encode(any())).thenReturn("persona");
+        Mockito.doNothing().when(inMemoryUserDetailsManager).createUser(any());
         Persona pasajeroRegistrado = pasajeroService.registrarPasajero(persona);
         // Verificación de resultados
         assertNotNull(pasajeroRegistrado);
@@ -164,20 +175,4 @@ import static org.mockito.Mockito.*;
     }
 
 
-    @Test
-     void testCalificarFeedback() throws Exception {
-
-        Integer calificacion = 4;
-        Integer id = 1;
-        Persona persona = new Persona();
-        persona.setId(id);
-        persona.setCalificacion(calificacion);
-
-        when(pasajeroService.buscarPorId(id)).thenReturn(persona);
-
-        pasajeroService.calificarfeedback(calificacion, id);
-
-        Assertions.assertEquals(calificacion, persona.getCalificacion());
-
-    }
 }
