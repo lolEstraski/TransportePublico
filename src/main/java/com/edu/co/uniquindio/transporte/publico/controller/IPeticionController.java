@@ -13,7 +13,7 @@ import java.util.List;
 public interface IPeticionController {
 
     @PostMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("crea una peticion  ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "peticion creada con exito", response = Peticion.class ),

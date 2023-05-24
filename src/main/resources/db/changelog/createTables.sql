@@ -34,8 +34,9 @@ CREATE TABLE PASAJEROS
     cedula   varchar(20) NOT NULL,
     nombre   varchar(50) NOT NULL,
     telefono varchar(20) NOT NULL,
-    email    varchar(50) NOT NULL,
-    pass     varchar(20) NOT NULL,
+    email varchar(50) NOT NULL,
+    pass varchar(20) NOT NULL,
+    calificacion INTEGER,
     PRIMARY KEY (id)
 );
 

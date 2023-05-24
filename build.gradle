@@ -27,6 +27,7 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.liquibase:liquibase-core'
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter', version: '1.2.8.RELEASE'
@@ -65,5 +66,6 @@ sonarqube {
 		property("sonar.projectKey", "TransportePublico")
 		property("sonar.organization", "TransportePublico")
 		property("sonar.host.url", "http://localhost:9000")
+		property("sonar.token", "sqp_e661457e4dfa604677819ae0a0495ed38649a842")
 	}
 }

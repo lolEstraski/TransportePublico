@@ -16,7 +16,7 @@ public interface IRutaParadaController {
 
 
     @PostMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("crea una ruta  ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "ruta creada con exito", response = Ruta.class),
@@ -26,7 +26,7 @@ public interface IRutaParadaController {
 
 
     @GetMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("busca una ruta por  su nombre o id ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class),
@@ -36,7 +36,7 @@ public interface IRutaParadaController {
 
 
     @PatchMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("Actualiza una ruta  ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Actualizacion exitosa", response = Ruta.class),
@@ -46,7 +46,7 @@ public interface IRutaParadaController {
 
 
     @DeleteMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("Elimina una ruta dado  su nombre o id ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "eliminacion exitosa"),
@@ -59,7 +59,7 @@ public interface IRutaParadaController {
     List<Ruta> obtenerRutas();
 
     @GetMapping(path = "Rutas")
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("busca una ruta por su origen destino  ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Ruta obtenida exitosamente", response = RutaDto.class),
@@ -69,7 +69,7 @@ public interface IRutaParadaController {
 
 
     @GetMapping(path = "rutass")
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("busca una ruta  que contengan plataforma ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),

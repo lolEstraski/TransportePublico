@@ -53,7 +53,7 @@ public class PasajeroService {
                 .roles("USER")
                 .build();
         inMemoryUserDetailsManager.createUser(user);
-        emailService.enviarEmail("Registro de cuenta en Tpublico", "Hola " + pasajeroRegistrado.getNombre() + " es un gusto que haya registrado en TPublico, para activar su cuenta ingrese en el siguiente link: url", pasajeroRegistrado.getEmail());
+        emailService.enviarEmail("Registro de cuenta en Tpublico", "Hola " + pasajeroRegistrado.getNombre() + " es un gusto que haya registrado en TPublico", pasajeroRegistrado.getEmail());
         return pasajeroRegistrado;
     }
 

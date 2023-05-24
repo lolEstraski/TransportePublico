@@ -13,8 +13,22 @@ import org.springframework.web.bind.annotation.*;
 public interface IPasajeroController {
 
 
+    @PostMapping( path = "/auth")
+    @ApiOperation("Para autenticar un usuario con nombre y contra")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "Login exitoso", response = PersonaDto.class ),
+            @ApiResponse( code = 400, message = "Verificar credenciales", response = Exception.class )
+    })
+    ResponseEntity<PersonaDto> doLogin(@RequestBody LoginRequest credentials);
 
-    Persona registrarPasajero(@RequestBody Persona persona) throws Exception;
+    @PostMapping
+    @CrossOrigin(origins = "*")
+    @ApiOperation("Registrar Pasajeros")
+    @ApiResponses({
+            @ApiResponse( code = 200, message = "se registro con exito", response = Persona.class ),
+            @ApiResponse( code = 400, message = "Verificar Datos", response = Exception.class )
+    })
+    ResponseEntity<Persona> registrarPasajero(@RequestBody Persona persona) throws Exception;
 
 /**
     @PostMapping
@@ -36,7 +50,7 @@ public interface IPasajeroController {
     })
     ResponseEntity<String> actualizarContrasena(@PathVariable Integer id,@RequestBody ActualizarContrasenaRequest parametros) throws Exception;
 
-    @PostMapping
+    @PostMapping( path = "/calificar")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("calificacion feedback")
     @ApiResponses({

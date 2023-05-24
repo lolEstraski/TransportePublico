@@ -10,18 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/admin")
+@CrossOrigin("http://127.0.0.1:5500")
 @AllArgsConstructor
 public class AdminController implements IAdminController{
 
-    private LoginService loginService;
-
-    @Override
-    public ResponseEntity<PersonaDto> doLogin(LoginRequest credentials) {
-        var persona = loginService.doLogin(credentials);
-        if( persona == null ){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(persona);
-    }
 
 }

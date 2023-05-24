@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Entity( name = "PASAJEROS")
 @Data
 @NoArgsConstructor
-
 public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

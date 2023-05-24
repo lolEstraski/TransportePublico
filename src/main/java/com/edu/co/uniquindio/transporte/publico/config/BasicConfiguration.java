@@ -10,10 +10,17 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.SessionManagementFilter;
 
 @Configuration
 @EnableWebSecurity
 public class BasicConfiguration {
+
+    @Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
@@ -21,7 +28,7 @@ public class BasicConfiguration {
                 .password(passwordEncoder.encode("tPublico"))
                 .roles("SYS")
                 .build();
-        UserDetails admin = User.withUsername("admin")
+        UserDetails admin = User.withUsername("admin@tpublico.com")
                 .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN")
                 .build();
@@ -30,11 +37,12 @@ public class BasicConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+
+        http.addFilterBefore(corsFilter(), SessionManagementFilter.class)
+                .authorizeRequests()
                 .antMatchers("/pasajero").access("hasRole('SYS')")
+                .antMatchers("/pasajero/auth").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')")
-                .anyRequest()
-                .authenticated()
                 .and()
                 .httpBasic()
                 .and().csrf().disable();

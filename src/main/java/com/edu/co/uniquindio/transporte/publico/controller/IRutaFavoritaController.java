@@ -16,7 +16,7 @@ public interface IRutaFavoritaController {
 
 
     @PostMapping()
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("Agrega una ruta favorita  ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "Ruta agregada con  exito", response = Ruta.class ),
@@ -25,7 +25,7 @@ public interface IRutaFavoritaController {
     ResponseEntity<RutaFavorita> agregarRutaFavorita(@RequestBody RutaFavoritaDto request) throws TPublicoException;
 
     @GetMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("busca una ruta por  su nombre o id ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class ),
@@ -35,7 +35,7 @@ public interface IRutaFavoritaController {
 
 
     @DeleteMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
+    @CrossOrigin(origins = "*")
     @ApiOperation("Elimina una ruta dado  su nombre o id ")
     @ApiResponses({
             @ApiResponse( code = 200, message = "eliminacion exitosa"),

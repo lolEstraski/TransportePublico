@@ -11,12 +11,5 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IAdminController {
 
-    @PostMapping
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("Para autenticar un usuario con nombre y contra")
-    @ApiResponses({
-            @ApiResponse( code = 200, message = "Login exitoso", response = PersonaDto.class ),
-            @ApiResponse( code = 400, message = "Verificar credenciales", response = Exception.class )
-    })
-    ResponseEntity<PersonaDto> doLogin(@RequestBody LoginRequest credentials);
+
 }
