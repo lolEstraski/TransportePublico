@@ -17,9 +17,9 @@ public class BasicConfiguration {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
+        UserDetails user = User.withUsername("system")
+                .password(passwordEncoder.encode("tPublico"))
+                .roles("SYS")
                 .build();
         UserDetails admin = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin"))
@@ -31,7 +31,7 @@ public class BasicConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/pasajero").access("hasRole('ADMIN')")
+                .antMatchers("/pasajero").access("hasRole('SYS')")
                 .antMatchers("/admin").access("hasRole('ADMIN')")
                 .anyRequest()
                 .authenticated()
