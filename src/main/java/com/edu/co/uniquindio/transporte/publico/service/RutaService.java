@@ -112,22 +112,21 @@ public class RutaService {
         }
 
 
-    public InformacionRuta getInfoRuta(Integer rutaId) {
-
-       Ruta ruta= rutaRepository.findById(rutaId).get();
+    public RutaRequest getInfoRuta(Integer rutaId) {
+        RutaRequest response = null;
+       Ruta ruta= rutaRepository.findById(rutaId).orElse(null);
        //buscar horario de la ruta
-        Horario horario = new Horario();
-       InformacionRuta infoRuta = new InformacionRuta();
-        infoRuta.setInfoDiscapacitados("No");
-        LocalTime horaActual = horario.getHoraInicio();
-        List<String> horarios = new ArrayList<>();
-        while (horaActual.equals(horario.getHoraFin())){
-            horaActual = horaActual.plusMinutes(ruta.getFrecuencia());
-            horarios.add(horaActual.toString());
+        if(ruta != null) {
+            var paradas = paradaRepository.findByIdRuta(rutaId);
+            String mapa = "";
+            for (Parada parada:
+                    paradas
+                 ) {
+
+            }
+
         }
-        infoRuta.setHorarios(horarios);
-        infoRuta.setDias(horario.getDia());
-        return infoRuta;
+        return response;
     }
 
 }

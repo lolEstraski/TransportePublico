@@ -77,6 +77,12 @@ public interface IRutaParadaController {
     })
     List<Ruta> buscarRutasConPlataforma();
 
-
-
+    @GetMapping(path = "/{id}")
+    @CrossOrigin(origins = "*")
+    @ApiOperation("busca una ruta  que contengan plataforma ")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),
+            @ApiResponse(code = 400, message = "no existe ruta con plataforma", response = Exception.class)
+    })
+    RutaRequest buscarRutaPorId(@PathVariable Integer id);
 }

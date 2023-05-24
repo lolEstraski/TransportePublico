@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class ParadaDto {
-    private Long id;
+    private Integer id;
     private String nombre;
     private String direccion;
     private String latitud;

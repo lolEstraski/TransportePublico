@@ -9,6 +9,7 @@ import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,5 +63,9 @@ public class RutaParadaControllerController implements IRutaParadaController {
          return rutaService.buscarRutasConPlataforma(true);
         }
 
+    @Override
+    public RutaRequest buscarRutaPorId( Integer id){
+        return rutaService.getInfoRuta(id);
+    }
 
 }
