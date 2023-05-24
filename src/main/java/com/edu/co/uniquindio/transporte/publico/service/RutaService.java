@@ -114,6 +114,16 @@ public class RutaService {
 
 
 
+    public RutaDto2 agregarParada(Integer rutaId, ParadaDto paradaDto) {
+        Optional<Ruta> optionalRuta = rutaRepository.findById(rutaId);
+        if (optionalRuta.isPresent()) {
+            RutaDto ruta = optionalRuta.get();
+            ruta.getParadas().add(parada);
+            return rutaRepository.save(rutaDto2);
+        }
+        return null;
+    }
+
 }
 
 

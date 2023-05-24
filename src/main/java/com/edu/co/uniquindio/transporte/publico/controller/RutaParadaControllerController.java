@@ -3,9 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
-import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
-import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
@@ -62,5 +60,11 @@ public class RutaParadaControllerController implements IRutaParadaController {
     public List<Ruta> buscarRutasConPlataforma() {
          return rutaService.buscarRutasConPlataforma(true);
         }
+
+    @Override
+    public ResponseEntity<RutaDto2> agregarParadaARuta(Integer id, ParadaDto paradaDto) {
+        var rutaDto2 = rutaService.agregarParadaARuta(id,paradaDto);
+        return ResponseEntity.ok(rutaDto2);
+    }
 
 }
