@@ -8,6 +8,7 @@ import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.exception.ActualizarException;
 import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
+import com.edu.co.uniquindio.transporte.publico.repository.ParadaRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,9 @@ public class RutaService {
     @Autowired
     private RutaRepository rutaRepository;
 
+    @Autowired
+    private ParadaRepository paradaRepository;
+
     private HorarioRepository horarioRepository;
 
     public Ruta crearRuta (RutaRequest parametros){
@@ -37,8 +41,21 @@ public class RutaService {
             var rutaNueva = new Ruta();
             rutaNueva.setFrecuencia(parametros.getFrecuencia());
             rutaNueva.setSentido(parametros.getSentido());
+            rutaNueva.setOrigen(parametros.getOrigen());
+            rutaNueva.setDestino(parametros.getDestino());
+            rutaNueva.setPlataforma(parametros.isPlataforma());
             rutaNueva.setNombre(parametros.getNombre());
             rutaCreada = rutaRepository.save(rutaNueva);
+            for (ParadaDto parada:
+                 parametros.getParadas()) {
+                var nuevaParada = new Parada();
+                nuevaParada.setNombre(parada.getNombre());
+                nuevaParada.setDireccion(parada.getDireccion());
+                nuevaParada.setLatitud(parada.getLatitud());
+                nuevaParada.setLongitud(parada.getLongitud());
+                nuevaParada.setRuta(rutaCreada);
+                paradaRepository.save(nuevaParada);
+            }
         }
         return rutaCreada;
     }
@@ -111,16 +128,6 @@ public class RutaService {
         infoRuta.setHorarios(horarios);
         infoRuta.setDias(horario.getDia());
         return infoRuta;
-    }
-
-
-    public Ruta agregarParada(Integer id, Parada parada) {
-        Ruta ruta = rutaRepository.findById(id).orElse(null);
-        if (ruta != null) {
-            ruta.agregarParada(parada);
-            ruta = rutaRepository.save(ruta);
-        }
-        return ruta;
     }
 
 }

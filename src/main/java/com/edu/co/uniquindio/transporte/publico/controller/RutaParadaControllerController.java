@@ -63,9 +63,4 @@ public class RutaParadaControllerController implements IRutaParadaController {
         }
 
 
-    public ResponseEntity<Ruta> agregarParada( Integer id, Parada parada) {
-        Ruta ruta = rutaService.agregarParada(id, parada);
-        return ResponseEntity.ok(ruta);
-    }
-
 }

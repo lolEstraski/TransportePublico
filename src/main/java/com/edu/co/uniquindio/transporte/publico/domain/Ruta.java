@@ -19,8 +19,6 @@ public class Ruta implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private Integer idHorario;
-
     private String nombre;
 
     private  String sentido;
@@ -32,19 +30,5 @@ public class Ruta implements Serializable {
     private String origen;
 
     private String destino;
-
-
-    @OneToMany
-    @JoinColumn(name = "parada", referencedColumnName = "id")
-    private List<Parada> paradas;
-
-
-
-    public void agregarParada(Parada parada) {
-        if (paradas == null) {
-            paradas = new ArrayList<>();
-        }
-        paradas.add(parada);
-    }
 
 }

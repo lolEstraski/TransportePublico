@@ -13,6 +13,9 @@ CREATE TABLE RUTAS
 (
     id         int         NOT NULL AUTO_INCREMENT,
     nombre     varchar(50) NOT NULL,
+    plataforma     varchar(50) NOT NULL,
+    origen     varchar(50) NOT NULL,
+    destino     varchar(50) NOT NULL,
     frecuencia varchar(50) NOT NULL,
     sentido    varchar(50) NOT NULL,
 
@@ -59,15 +62,16 @@ CREATE TABLE RUTAS_FAVORITAS
     PRIMARY KEY (id)
 );
 
-CREATE TABLE Parada
+CREATE TABLE PARADAS
 (
-    id        int         NOT NULL AUTO_INCREMENT,
-    nombre    varchar(50) NOT NULL,
-    direccion varchar(50) NOT NULL,
-    latitud   varchar(50) NOT NULL,
-    longitud  varchar(50) NOT NULL,
-
-    PRIMARY KEY (id)
+    id     int         NOT NULL AUTO_INCREMENT,
+    id_ruta int NOT NULL,
+    nombre varchar(50) NOT NULL,
+    direccion   varchar(50) NOT NULL,
+    latitud varchar(50) NOT NULL,
+    longitud varchar(50) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_ruta) REFERENCES RUTAS(id)
 );
 
 CREATE SEQUENCE hibernate_sequence START WITH (Select (count(id) +1) from ADMINISTRADORES);

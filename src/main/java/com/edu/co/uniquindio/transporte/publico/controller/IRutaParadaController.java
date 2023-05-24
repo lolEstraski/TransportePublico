@@ -78,15 +78,5 @@ public interface IRutaParadaController {
     List<Ruta> buscarRutasConPlataforma();
 
 
-    @PostMapping(path ="/{id}/paradas")
-    @CrossOrigin(origins = "console.firebase.google.com")
-    @ApiOperation("busca una ruta  que contengan plataforma ")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),
-            @ApiResponse(code = 400, message = "no existe ruta con plataforma", response = Exception.class)
-    })
-    ResponseEntity<Ruta> agregarParada(@PathVariable Integer id, @RequestBody Parada parada);
-
-
 
 }
