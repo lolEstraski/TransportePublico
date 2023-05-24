@@ -2,6 +2,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Horario;
+import com.edu.co.uniquindio.transporte.publico.domain.Parada;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.exception.ActualizarException;
@@ -113,15 +114,13 @@ public class RutaService {
     }
 
 
-
-    public RutaDto2 agregarParada(Integer rutaId, ParadaDto paradaDto) {
-        Optional<Ruta> optionalRuta = rutaRepository.findById(rutaId);
-        if (optionalRuta.isPresent()) {
-            RutaDto ruta = optionalRuta.get();
-            ruta.getParadas().add(parada);
-            return rutaRepository.save(rutaDto2);
+    public Ruta agregarParada(Integer id, Parada parada) {
+        Ruta ruta = rutaRepository.findById(id).orElse(null);
+        if (ruta != null) {
+            ruta.agregarParada(parada);
+            ruta = rutaRepository.save(ruta);
         }
-        return null;
+        return ruta;
     }
 
 }

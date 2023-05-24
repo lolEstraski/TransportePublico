@@ -1,4 +1,5 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
+import com.edu.co.uniquindio.transporte.publico.domain.Parada;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
@@ -77,19 +78,14 @@ public interface IRutaParadaController {
     List<Ruta> buscarRutasConPlataforma();
 
 
-    @PutMapping(path = "/{id}/paradas")
+    @PostMapping(path ="/{id}/paradas")
     @CrossOrigin(origins = "console.firebase.google.com")
     @ApiOperation("busca una ruta  que contengan plataforma ")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),
             @ApiResponse(code = 400, message = "no existe ruta con plataforma", response = Exception.class)
     })
-    ResponseEntity<RutaDto2> agregarParadaARuta(@PathVariable Integer id, @RequestBody ParadaDto paradaDto);
-
-
-
-
-
+    ResponseEntity<Ruta> agregarParada(@PathVariable Integer id, @RequestBody Parada parada);
 
 
 

@@ -3,6 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.dto;
 
 import lombok.Data;
 
+import java.util.List;
 
 
 @Data
@@ -19,5 +20,7 @@ public class RutaDto {
     private  String origen;
 
     private String destino;
+
+    private List<ParadaDto> paradas;
 
 }

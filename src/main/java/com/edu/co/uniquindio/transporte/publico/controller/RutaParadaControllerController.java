@@ -2,6 +2,7 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 
 
+import com.edu.co.uniquindio.transporte.publico.domain.Parada;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
 import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
@@ -61,10 +62,10 @@ public class RutaParadaControllerController implements IRutaParadaController {
          return rutaService.buscarRutasConPlataforma(true);
         }
 
-    @Override
-    public ResponseEntity<RutaDto2> agregarParadaARuta(Integer id, ParadaDto paradaDto) {
-        var rutaDto2 = rutaService.agregarParadaARuta(id,paradaDto);
-        return ResponseEntity.ok(rutaDto2);
+
+    public ResponseEntity<Ruta> agregarParada( Integer id, Parada parada) {
+        Ruta ruta = rutaService.agregarParada(id, parada);
+        return ResponseEntity.ok(ruta);
     }
 
 }
