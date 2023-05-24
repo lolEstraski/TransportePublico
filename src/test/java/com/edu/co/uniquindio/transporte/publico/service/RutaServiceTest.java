@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class RutaServiceTest {
+    class RutaServiceTest {
 
     @Mock
     private RutaRepository rutaRepositoryMock;
@@ -38,7 +38,8 @@ public class RutaServiceTest {
 
 
       @Test
-      @DisplayName("CrearUnaRutaSiNoExisteOtraConElMismoNombre") void crearRutaTest() {
+      @DisplayName("CrearUnaRutaSiNoExisteOtraConElMismoNombre")
+      void crearRutaTest() {
 
       RutaRequest parametros = new RutaRequest();
       parametros.setNombre("nombre de la ruta");
@@ -57,7 +58,8 @@ public class RutaServiceTest {
 
 
     @Test
-    public void testCrearRuta() {
+    @DisplayName("crear ruta")
+     void testCrearRuta() {
         when(rutaRepositoryMock.findByNombreOrId(anyString(), any())).thenReturn(Optional.empty());
 
         RutaRequest parametros = new RutaRequest();
@@ -99,7 +101,8 @@ public class RutaServiceTest {
     }
 
     @Test
-    public void testActualizarRuta() throws Exception {
+    @DisplayName("Actualiza la ruta")
+     void testActualizarRuta() throws Exception {
         Ruta ruta = new Ruta();
         ruta.setNombre("nombre");
         ruta.setFrecuencia(5);
@@ -124,7 +127,8 @@ public class RutaServiceTest {
 
 
     @Test
-    void eliminarRuta_DebeEliminarRutaExistente() {
+    @DisplayName("DebeEliminarRutaExistente")
+    void eliminarRutaEliminarExistente() {
 
         EliminarRutaRequest parametros = new EliminarRutaRequest();
         parametros.setId(1);
@@ -138,7 +142,8 @@ public class RutaServiceTest {
     }
 
     @Test
-    void eliminarRuta_NoDebeHacerNadaSiRutaNoExiste() {
+    @DisplayName("NoDebeHacerNadaSiRutaNoExiste")
+    void eliminarRutaNoExiste() {
         // Arrange
         EliminarRutaRequest parametros = new EliminarRutaRequest();
         parametros.setId(1);
@@ -175,7 +180,8 @@ public class RutaServiceTest {
 
 
     @Test
-    void buscarRutas_DebeRetornarListaDeRutasDto() {
+    @DisplayName("DebeRetornarListaDeRutasDto")
+    void buscarRutas() {
         // Arrange
         String origen = "Origen";
         String destino = "Destino";

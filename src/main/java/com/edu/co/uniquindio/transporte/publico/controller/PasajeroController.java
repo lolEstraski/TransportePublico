@@ -3,6 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import lombok.AllArgsConstructor;
 
@@ -35,7 +36,7 @@ public class PasajeroController implements IPasajeroController {
     }
 
     @Override
-    public ResponseEntity<String> calificar(Integer calificacion , Integer id) throws Exception {
+    public ResponseEntity<String> calificar(Integer calificacion , Integer id) throws  TPublicoException {
         pasajeroService.calificarfeedback(calificacion ,id);
         return ResponseEntity.ok("retroalimentacion exitosa.");
     }

@@ -26,7 +26,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-public class PeticionControllerTests {
+ class PeticionControllerTests {
 
     @Mock
     private PeticionService peticionServiceMock;
@@ -44,7 +44,7 @@ public class PeticionControllerTests {
 
     @Test
     @DisplayName("debe crear una nueva peticion")
-    public void crearPeticionTest() throws Exception {
+     void crearPeticionTest() throws Exception {
         // given / dado que
         var peticionRequest = new PeticionRequest();
         peticionRequest.setTipo("Reclamacion");
@@ -67,7 +67,7 @@ public class PeticionControllerTests {
 
     @Test
     @DisplayName("debe listar las peticiones por nombre de persona")
-    public void listarPeticionesPorNombrePersonaTest() throws Exception {
+     void listarPeticionesPorNombrePersonaTest() throws Exception {
         // given / dado que
         String nombre = "Juan";
         Peticion peticion1 = new Peticion();
@@ -77,7 +77,7 @@ public class PeticionControllerTests {
         peticion2.setId(2);
         peticion2.setNombre("Juan");
         List<Peticion> peticiones = Arrays.asList(peticion1, peticion2);
-        Mockito.when(peticionServiceMock.listarPeticionesPorNombrePsajero(eq(nombre))).thenReturn(peticiones);
+        Mockito.when(peticionServiceMock.listarPeticionesPorNombrePsajero((nombre))).thenReturn(peticiones);
 
         // when / cuando
         mockMvc.perform( MockMvcRequestBuilders

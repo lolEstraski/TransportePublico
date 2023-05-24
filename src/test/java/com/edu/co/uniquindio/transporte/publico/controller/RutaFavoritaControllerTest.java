@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-public class RutaFavoritaControllerTest {
+ class RutaFavoritaControllerTest {
 
 
     @Mock
@@ -44,7 +44,7 @@ public class RutaFavoritaControllerTest {
 
     @Test
     @DisplayName("debe agregar una ruta favorita a una persona")
-    public void agregarRutaFavoritaTest() throws Exception {
+     void agregarRutaFavoritaTest() throws Exception {
         //given /dado que
         var  rutaFavoritaValida=new RutaFavoritaDto();
         rutaFavoritaValida.setIdRuta(1);
@@ -61,7 +61,7 @@ public class RutaFavoritaControllerTest {
         favoritaResponseValido.setPersona(validPersona);
         favoritaResponseValido.setRuta(validRuta);
 
-        Mockito.when(rutaFavoritaServiceMock.agregarRutaFavorita(eq(validIdPersona), eq(validIdRuta))).thenReturn(favoritaResponseValido);
+        Mockito.when(rutaFavoritaServiceMock.agregarRutaFavorita((validIdPersona),(validIdRuta))).thenReturn(favoritaResponseValido);
 
         //then / Entonces
         mockMvc.perform( MockMvcRequestBuilders

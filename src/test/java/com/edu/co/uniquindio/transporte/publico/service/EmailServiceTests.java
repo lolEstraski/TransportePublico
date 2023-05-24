@@ -18,7 +18,7 @@ import java.util.Properties;
 
 
 @ExtendWith(MockitoExtension.class)
-public class EmailServiceTests {
+ class EmailServiceTests {
 
     @Mock
     private JavaMailSender javaMailSenderMock;
@@ -29,7 +29,7 @@ public class EmailServiceTests {
 
     @Test
     @DisplayName("Deberia enviar un email si los datos son correctos")
-    public void debeEnviarEmail(){
+    void debeEnviarEmail(){
         //given
         var asuntoValido = "asunto";
         var contenidoValido = "Contenido valido";

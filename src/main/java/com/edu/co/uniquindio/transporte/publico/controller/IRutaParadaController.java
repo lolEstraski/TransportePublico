@@ -1,7 +1,7 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
-
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -41,7 +41,7 @@ public interface IRutaParadaController {
             @ApiResponse( code = 200, message = "Actualizacion exitosa", response = Ruta.class ),
             @ApiResponse( code = 400, message = "Verificar Datos", response = Exception.class )
     })
-    Ruta actualizarRuta(@RequestBody RutaRequest parametros) throws Exception;
+    Ruta actualizarRuta(@RequestBody RutaRequest parametros) throws TPublicoException;
 
 
     @DeleteMapping
@@ -51,7 +51,7 @@ public interface IRutaParadaController {
             @ApiResponse( code = 200, message = "eliminacion exitosa"),
             @ApiResponse( code = 400, message = "no se puede puede elimar por que esta ruta no existe", response = Exception.class )
     })
-    void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws Exception;
+    void  elimarRuta(@RequestBody EliminarRutaRequest parametros) throws TPublicoException;
 
 
    @GetMapping(path = "ruta")

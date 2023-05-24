@@ -4,6 +4,8 @@ package com.edu.co.uniquindio.transporte.publico.service;
 import com.edu.co.uniquindio.transporte.publico.domain.Horario;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
+import com.edu.co.uniquindio.transporte.publico.exception.ActualizarException;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.HorarioRepository;
 import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
@@ -59,7 +61,7 @@ public class RutaService {
         return rutaDto;
     }
 
-    public Ruta actualizarRuta( RutaRequest parametros) throws Exception {
+    public Ruta actualizarRuta( RutaRequest parametros) throws  TPublicoException {
         Optional<Ruta> optionalRuta = rutaRepository.findByNombreOrId(parametros.getNombre(), null);
         if (optionalRuta.isPresent()) {
             Ruta ruta = optionalRuta.get();
@@ -70,7 +72,7 @@ public class RutaService {
             ruta.setDestino(parametros.getDestino());
             return rutaRepository.save(ruta);
         }else{
-            throw new Exception("la ruta no exite");
+            throw new TPublicoException("la ruta no exite");
         }
     }
 

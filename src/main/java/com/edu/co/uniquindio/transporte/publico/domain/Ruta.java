@@ -19,7 +19,7 @@ public class Ruta implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private Integer IdHorario;
+    private Integer idHorario;
 
     private String nombre;
 

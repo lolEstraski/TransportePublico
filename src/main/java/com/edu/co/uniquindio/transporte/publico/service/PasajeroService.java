@@ -1,6 +1,7 @@
 package com.edu.co.uniquindio.transporte.publico.service;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +29,17 @@ public class PasajeroService {
     private EmailService emailService;
 
 
-    public Persona registrarPasajero(Persona persona) throws Exception {
+    public Persona registrarPasajero(Persona persona) throws TPublicoException {
 
         Persona pasajeroRegistrado;
         boolean correoExiste = esRepetido(persona.getEmail());
         if (correoExiste) {
-            throw new Exception("El Correo ya esta en Uso");
+            throw new TPublicoException("El Correo ya esta en Uso");
         }
         //cedula
         boolean cedulaExiste = cedulaRepetida(persona.getCedula());
         if (cedulaExiste) {
-            throw new Exception("La cedula ingresada ya existe");
+            throw new TPublicoException("La cedula ingresada ya existe");
         }
         var pasajeroRegistrar = new Persona();
         pasajeroRegistrar.setCedula(persona.getCedula());
@@ -63,18 +64,18 @@ public class PasajeroService {
         return pasajeroRepository.existsById(cedula);
     }
 
-    public void actualizarContrasena(Integer id, String contrasenaActual, String nuevaContrasena) throws Exception {
+    public void actualizarContrasena(Integer id, String contrasenaActual, String nuevaContrasena) throws TPublicoException {
 
         // Buscar al pasajero por el ID proporcionado
         Persona pasajero = buscarPorId(id);
 
         // Si no se encuentra el pasajero, lanzar una excepción de tipo PasajeroNoEncontradoException
         if (pasajero == null) {
-            throw new Exception ("El pasajero con ID " + id + " no existe.");
+            throw  new TPublicoException ("El pasajero con ID " + id + " no existe.");
         }
         // Verificar si la contraseña actual proporcionada en la solicitud coincide con la contraseña actual del pasajero
         if (!pasajero.getPass().equals(contrasenaActual)) {
-            throw new Exception("La contraseña actual no coincide.");
+            throw new TPublicoException("La contraseña actual no coincide.");
         }
         // Actualizar la contraseña del pasajero con la nueva contraseña proporcionada
         pasajero.setPass(nuevaContrasena);
@@ -82,23 +83,23 @@ public class PasajeroService {
     }
 
 
-    public Persona buscarPorId(Integer id) throws Exception {
+    public Persona buscarPorId(Integer id) throws TPublicoException {
         Optional<Persona> resultado = pasajeroRepository.findById(id);
         if (resultado.isPresent()) {
             return resultado.get();
         } else {
-        throw new Exception("No se encontró al pasajero con ID " + id);
+            throw new TPublicoException("No se encontró al pasajero con ID " + id);
 
         }
     }
 
-    public void calificarfeedback(Integer calificacion, Integer id) throws Exception {
+    public void calificarfeedback(Integer calificacion, Integer id) throws TPublicoException {
       var persona=  buscarPorId(id) ;
       if (persona ==null){
-          throw new Exception(" no hay persona con dicho id");
+          throw new TPublicoException(" no hay persona con dicho id");
       }
       if( calificacion <1 ||  calificacion>5){
-          throw  new Exception("la calificacion es del 1 al 5 no lo olvide");
+          throw  new TPublicoException("la calificacion es del 1 al 5 no lo olvide");
       }
          persona.setCalificacion(calificacion);
         pasajeroRepository.save(persona);

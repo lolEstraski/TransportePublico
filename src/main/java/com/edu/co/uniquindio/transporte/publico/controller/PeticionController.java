@@ -34,7 +34,7 @@ public class PeticionController implements IPeticionController {
     }
 
     @Override
-    public List<Peticion> obtenerPeticionCorreo(String email) throws Exception {
+    public List<Peticion> obtenerPeticionCorreo(String email)  {
         return peticionService.buscarPeticiones(email);
     }
 

@@ -6,6 +6,7 @@ import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaRequest;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.service.RutaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,12 +39,12 @@ public class RutaParadaControllerController implements IRutaParadaController {
     }
 
     @Override
-    public Ruta actualizarRuta(RutaRequest parametros) throws Exception {
+    public Ruta actualizarRuta(RutaRequest parametros) throws TPublicoException {
        return rutaService.actualizarRuta(parametros);
     }
 
     @Override
-    public void elimarRuta(EliminarRutaRequest parametros) throws Exception {
+    public void elimarRuta(EliminarRutaRequest parametros)throws TPublicoException {
         rutaService.eliminarRuta(parametros);
     }
 

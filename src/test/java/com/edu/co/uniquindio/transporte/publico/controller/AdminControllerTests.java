@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
-public class AdminControllerTests {
+ class AdminControllerTests {
 
     @Mock
     private LoginService loginServiceMock;
@@ -41,7 +41,7 @@ public class AdminControllerTests {
 
     @Test
     @DisplayName("Debe conectar un admin si las credenciales son validas")
-    public void doLoginTest() throws Exception{
+     void doLoginTest() throws Exception{
         //Given / Dado que
         var loginRequestValido = new LoginRequest();
         loginRequestValido.setContrasena("Valida");
@@ -63,7 +63,7 @@ public class AdminControllerTests {
 
     @Test
     @DisplayName("No debe conectar un admin si las credenciales son incorrectas")
-    public void doLoginTestFail() throws Exception{
+     void doLoginTestFail() throws Exception{
         //Given / Dado que
         var loginRequestValido = new LoginRequest();
         loginRequestValido.setContrasena("no valida");

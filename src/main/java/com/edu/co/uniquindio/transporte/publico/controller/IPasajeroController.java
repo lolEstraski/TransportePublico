@@ -3,6 +3,7 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.*;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -43,7 +44,7 @@ public interface IPasajeroController {
             @ApiResponse( code = 400, message = "Verificar", response = Exception.class )
     })
 
-    ResponseEntity<String> calificar(@PathVariable Integer calificacion, Integer id) throws Exception;
+    ResponseEntity<String> calificar(@PathVariable Integer calificacion, Integer id) throws  TPublicoException;
 
 
 

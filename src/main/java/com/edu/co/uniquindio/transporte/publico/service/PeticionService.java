@@ -42,7 +42,7 @@ public class PeticionService {
 
     }
 
-    public List<Peticion> buscarPeticiones(String email) throws Exception {
+    public List<Peticion> buscarPeticiones(String email)  {
         return  peticionRepository.listByEmailPasajero(email);
     }
 

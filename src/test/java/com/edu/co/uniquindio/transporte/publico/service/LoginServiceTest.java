@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class LoginServiceTest {
+ class LoginServiceTest {
 
 
     @Mock
@@ -28,7 +28,7 @@ public class LoginServiceTest {
 
 
     @Test
-    public void testDoLogin() throws Exception {
+     void testDoLogin() throws Exception {
         //Given / Dado que
         LoginRequest request = new LoginRequest();
         request.setNombreUsuario("admin");

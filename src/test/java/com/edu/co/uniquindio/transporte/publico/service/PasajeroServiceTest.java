@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PasajeroServiceTest {
+ class PasajeroServiceTest {
 
     @Mock
     private PasajeroRepository pasajeroRepositoryMock;
@@ -56,7 +56,7 @@ public class PasajeroServiceTest {
 
     @Test
     @DisplayName("verifica si el email es repetido ")
-    public void testEsRepetidoTrue() {
+     void testEsRepetidoTrue() {
         String email = "pedro@gmail.com";
 
         Persona persona = new Persona();
@@ -65,21 +65,21 @@ public class PasajeroServiceTest {
 
         boolean resultado = pasajeroService.esRepetido(email);
         assertTrue(resultado);
-        verify(pasajeroRepositoryMock).findByEmail(eq(email));
+        verify(pasajeroRepositoryMock).findByEmail((email));
 
     }
     @Test
     @DisplayName("cuando el email es reptido manda una excepcion")
-    public void testEsRepetidoFalse() {
+     void testEsRepetidoFalse() {
         String email = "pedro@gmail.com";
         when(pasajeroRepositoryMock.findByEmail(email)).thenReturn(Optional.empty());
         boolean resultado = pasajeroService.esRepetido(email);
         assertFalse(resultado);
-        verify(pasajeroRepositoryMock).findByEmail(eq(email));
+        verify(pasajeroRepositoryMock).findByEmail((email));
     }
 
     @Test
-    public void testCedulaRepetidaTrue() {
+     void testCedulaRepetidaTrue() {
         Integer cedula = 123456789;
 
         Persona persona = new Persona();
@@ -91,7 +91,7 @@ public class PasajeroServiceTest {
     }
 
     @Test
-    public void testCedulaRepetidaFalse() {
+     void testCedulaRepetidaFalse() {
         Integer cedula = 123456789;
         when(pasajeroRepositoryMock.existsById(cedula)).thenReturn(false);
         boolean resultado = pasajeroService.cedulaRepetida(cedula);
@@ -102,7 +102,7 @@ public class PasajeroServiceTest {
 
 
     @Test
-    public void buscarPorId_personaExiste_retornaPersona() throws Exception {
+     void buscarPorId_personaExiste_retornaPersona() throws Exception {
 
         Persona persona = new Persona();
         persona.setId(1);
@@ -124,7 +124,7 @@ public class PasajeroServiceTest {
     }
 
     @Test
-    public void buscarPorId_personaNoExiste_lanzaExcepcion() {
+     void buscarPorId_personaNoExiste_lanzaExcepcion() {
 
         when(pasajeroRepositoryMock.findById(anyInt())).thenReturn(Optional.empty());
         assertThrows(Exception.class, () -> pasajeroService.buscarPorId(1));
@@ -142,7 +142,7 @@ public class PasajeroServiceTest {
 
         verify(pasajeroRepositoryMock).findById(1);
 
-        verify(pasajeroRepositoryMock).save(eq(persona));
+        verify(pasajeroRepositoryMock).save((persona));
         assertEquals("nuevaContrasena", persona.getPass());
     }
 
@@ -165,7 +165,7 @@ public class PasajeroServiceTest {
 
 
     @Test
-    public void testCalificarFeedback() throws Exception {
+     void testCalificarFeedback() throws Exception {
 
         Integer calificacion = 4;
         Integer id = 1;

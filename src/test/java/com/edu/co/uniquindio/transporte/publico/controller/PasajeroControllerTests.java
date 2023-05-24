@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-public class PasajeroControllerTests {
+ class PasajeroControllerTests {
 
 @Mock
 private PasajeroService pasajeroServiceMock;
@@ -40,7 +40,7 @@ PasajeroController pasajeroController;
 
     @Test
     @DisplayName("debe registrar a  un nuevo  usuario")
-    public void registrarPasajeroTest() throws Exception {
+     void registrarPasajeroTest() throws Exception {
         //given /dado que
         var Personavalida= new Persona();
         Personavalida.setNombre("carlos");
@@ -75,7 +75,7 @@ PasajeroController pasajeroController;
 
     @Test
     @DisplayName("debe actualizar  la contraseña de un usuario")
-        public void actualizarContrasenaTest() throws Exception {
+         void actualizarContrasenaTest() throws Exception {
          // given
         ActualizarContrasenaRequest request = new ActualizarContrasenaRequest();
         request.setPass("passwordAntigua");
@@ -93,7 +93,7 @@ PasajeroController pasajeroController;
 
 
         // then
-        Mockito.verify(pasajeroServiceMock).actualizarContrasena(eq(1), eq("passwordAntigua"), eq("passwordNueva"));
+        Mockito.verify(pasajeroServiceMock).actualizarContrasena((1), ("passwordAntigua"), ("passwordNueva"));
     }
 
 

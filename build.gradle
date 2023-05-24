@@ -59,6 +59,7 @@ jar {
 	archiveClassifier = ''
 }
 
+
 sonarqube {
 	properties {
 		property("sonar.projectKey", "TransportePublico")

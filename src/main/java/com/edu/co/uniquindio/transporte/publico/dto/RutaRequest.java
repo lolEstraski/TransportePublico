@@ -30,7 +30,7 @@ public class RutaRequest implements Serializable {
 
     private Integer id;
 
-    private Integer IdHorario;
+    private Integer idHorario;
 
 
 

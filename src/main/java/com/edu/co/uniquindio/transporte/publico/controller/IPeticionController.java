@@ -30,6 +30,6 @@ public interface IPeticionController {
     })
     List<Peticion> listarPeticionesPorNombrePersona(@PathVariable String nombre);
     @GetMapping(path = "/email/{email}")
-   List <Peticion>obtenerPeticionCorreo(@PathVariable String email) throws Exception;
+   List <Peticion>obtenerPeticionCorreo(@PathVariable String email) ;
 
 }
