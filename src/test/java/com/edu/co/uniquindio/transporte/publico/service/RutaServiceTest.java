@@ -1,5 +1,6 @@
 package com.edu.co.uniquindio.transporte.publico.service;
 
+import com.edu.co.uniquindio.transporte.publico.domain.Parada;
 import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaDto;
@@ -205,4 +206,29 @@ import static org.mockito.Mockito.*;
     }
 
 
+    @Test
+    public void agregarParada_DebeAgregarParadaEnRutaExistente() {
+        // Datos de prueba
+        Integer rutaId = 1;
+        Parada parada = new Parada();
+        parada.setDireccion("calle2b");
+        parada.setLatitud(1212);
+        parada.setLongitud(2134);
+        parada.setNombre("malvinas");
+
+        Ruta rutaExistente = new Ruta();
+        rutaExistente.setId(2);
+        rutaExistente.setNombre("Ruta 2");
+        rutaExistente.setFrecuencia(8);
+        rutaExistente.setSentido("Vuelta");
+        when(rutaRepositoryMock.findById(rutaId)).thenReturn(Optional.of(rutaExistente));
+
+        Ruta resultado = rutaService.agregarParada(rutaId, parada);
+        verify(rutaRepositoryMock).findById(rutaId);
+        verify(rutaRepositoryMock).save(rutaExistente);
+
+        assertEquals(rutaExistente, resultado);
+    }
 }
+
+

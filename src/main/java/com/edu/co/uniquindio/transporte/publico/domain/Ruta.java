@@ -1,6 +1,6 @@
 package com.edu.co.uniquindio.transporte.publico.domain;
 
-import com.edu.co.uniquindio.transporte.publico.dto.ParadaDto;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

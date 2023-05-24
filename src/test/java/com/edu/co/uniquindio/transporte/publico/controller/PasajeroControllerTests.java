@@ -2,6 +2,9 @@ package com.edu.co.uniquindio.transporte.publico.controller;
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.LoginRequest;
+import com.edu.co.uniquindio.transporte.publico.dto.PersonaDto;
+import com.edu.co.uniquindio.transporte.publico.service.LoginService;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Mock
 private PasajeroService pasajeroServiceMock;
 
+
+
 @InjectMocks
 PasajeroController pasajeroController;
 
@@ -37,6 +42,7 @@ PasajeroController pasajeroController;
         this.mockMvc = MockMvcBuilders.standaloneSetup(pasajeroController)
                 .build();
     }
+
 
     @Test
     @DisplayName("debe registrar a  un nuevo  usuario")
