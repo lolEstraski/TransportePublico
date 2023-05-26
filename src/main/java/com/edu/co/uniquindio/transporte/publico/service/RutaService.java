@@ -122,7 +122,6 @@ public class RutaService {
             for (Parada parada:
                     paradas
                  ) {
-
             }
 
         }

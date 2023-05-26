@@ -2,6 +2,7 @@ package com.edu.co.uniquindio.transporte.publico.service;
 
 
 import com.edu.co.uniquindio.transporte.publico.domain.Persona;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.repository.PasajeroRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

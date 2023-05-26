@@ -14,5 +14,4 @@ public class TPlublicoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TPlublicoApplication.class, args);
 	}
-
 }

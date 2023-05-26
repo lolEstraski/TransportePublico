@@ -4,6 +4,7 @@ import com.edu.co.uniquindio.transporte.publico.domain.Persona;
 import com.edu.co.uniquindio.transporte.publico.dto.ActualizarContrasenaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.LoginRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.PersonaDto;
+import com.edu.co.uniquindio.transporte.publico.exception.TPublicoException;
 import com.edu.co.uniquindio.transporte.publico.service.LoginService;
 import com.edu.co.uniquindio.transporte.publico.service.PasajeroService;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,14 +15,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static com.edu.co.uniquindio.transporte.publico.controller.JsonUtil.asJsonString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +34,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Mock
 private PasajeroService pasajeroServiceMock;
+@Mock
+private LoginService loginServiceMock;
 
 
 
@@ -68,7 +75,7 @@ PasajeroController pasajeroController;
         RegistrarResponseValido.setEmail(valiEmail);
         RegistrarResponseValido.setCedula(valiCedula);
         RegistrarResponseValido.setTelefono(valiTelefono);
-        Mockito.when(pasajeroServiceMock.registrarPasajero(any())).thenReturn(RegistrarResponseValido);
+        when(pasajeroServiceMock.registrarPasajero(any())).thenReturn(RegistrarResponseValido);
         //then / Entonces
         mockMvc.perform( MockMvcRequestBuilders
                         .post("/pasajero")
@@ -102,8 +109,56 @@ PasajeroController pasajeroController;
         Mockito.verify(pasajeroServiceMock).actualizarContrasena((1), ("passwordAntigua"), ("passwordNueva"));
     }
 
+    @Test
+    public void testDoLogin() {
+        // Datos de prueba
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setNombreUsuario("andres");
+        loginRequest.setContrasena("1234");
+        PersonaDto personaDto = new PersonaDto();
+        personaDto.setNombre("andres");
+        personaDto.setContrasena("1234");
 
 
+
+        when(loginServiceMock.doLogin(loginRequest)).thenReturn(personaDto);
+
+
+        ResponseEntity<PersonaDto> response = pasajeroController.doLogin(loginRequest);
+
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(personaDto, response.getBody());
+
+    }
+
+    @Test
+    public void testDoLoginNullPersona() {
+        // Datos de prueba
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setNombreUsuario("andres");
+        loginRequest.setContrasena("1234");
+
+        // Mockear el servicio para devolver null
+        when(loginServiceMock.doLogin(loginRequest)).thenReturn(null);
+        // Llamar al método del controlador
+        ResponseEntity<PersonaDto> response = pasajeroController.doLogin(loginRequest);
+        // Verificar el resultado
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(null, response.getBody());
+
+    }
+
+
+    @Test
+    public void testCalificar() throws TPublicoException {
+        Integer calificacion = 4;
+        Integer id = 123;
+        ResponseEntity<String> response = pasajeroController.calificar(calificacion, id);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("retroalimentacion exitosa.", response.getBody());
+
+    }
 
 
 

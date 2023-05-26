@@ -38,6 +38,45 @@ import static org.mockito.Mockito.*;
     private com.edu.co.uniquindio.transporte.publico.domain.Ruta Ruta;
 
 
+      @Test
+      @DisplayName("CrearUnaRutaSiNoExisteOtraConElMismoNombre")
+      void crearRutaTest() {
+
+      RutaRequest parametros = new RutaRequest();
+      parametros.setNombre("nombre de la ruta");
+      parametros.setFrecuencia(2);
+      parametros.setSentido("sentido de la ruta");
+
+     when(rutaRepositoryMock.findByNombreOrId(parametros.getNombre(), null)).thenReturn(Optional.empty());
+
+      RutaService rutaService =new RutaService();
+      Ruta rutaCreada = rutaService.crearRuta(parametros);
+      assertNotNull(rutaCreada);
+      assertEquals(parametros.getNombre(), rutaCreada.getNombre());
+      assertEquals(parametros.getFrecuencia(), rutaCreada.getFrecuencia());
+      assertEquals(parametros.getSentido(), rutaCreada.getSentido());
+      }
+
+
+    @Test
+    @DisplayName("crear ruta")
+     void testCrearRuta() {
+        when(rutaRepositoryMock.findByNombreOrId(anyString(), any())).thenReturn(Optional.empty());
+
+        RutaRequest parametros = new RutaRequest();
+        parametros.setNombre("nombre");
+        parametros.setFrecuencia(10);
+        parametros.setSentido("sentido");
+        parametros.setOrigen("origen");
+        parametros.setDestino("destino");
+
+        Ruta rutaCreada = rutaService.crearRuta(parametros);
+
+   
+        assertEquals("nombre", rutaCreada.getNombre());
+
+    }
+
 
     @Test
     @DisplayName("_deberia Retornar RutaDto Cuando SeEncuentra LaRuta")
@@ -62,6 +101,30 @@ import static org.mockito.Mockito.*;
         assertEquals(rutaSimulada.getFrecuencia(), rutaDto.getFrecuencia());
     }
 
+    @Test
+    @DisplayName("Actualiza la ruta")
+     void testActualizarRuta() throws Exception {
+        Ruta ruta = new Ruta();
+        ruta.setNombre("nombre");
+        ruta.setFrecuencia(5);
+        ruta.setSentido("sentido");
+        ruta.setOrigen("origen");
+        ruta.setDestino("destino");
+
+        when(rutaRepositoryMock.findByNombreOrId(anyString(), any())).thenReturn(Optional.of(ruta));
+
+        RutaRequest parametros = new RutaRequest();
+        parametros.setNombre("nombre");
+        parametros.setFrecuencia(10);
+        parametros.setSentido("sentido");
+        parametros.setOrigen("origen");
+        parametros.setDestino("destino");
+
+        Ruta rutaActualizada = rutaService.actualizarRuta(parametros);
+
+        assertEquals("nombre", rutaActualizada.getNombre());
+
+    }
 
 
     @Test
@@ -77,6 +140,18 @@ import static org.mockito.Mockito.*;
         when(rutaRepositoryMock.findById(parametros.getId())).thenReturn(Optional.of(rutaExistente));
 
         rutaService.eliminarRuta(parametros);
+    }
+
+    @Test
+    @DisplayName("NoDebeHacerNadaSiRutaNoExiste")
+    void eliminarRutaNoExiste() {
+        // Arrange
+        EliminarRutaRequest parametros = new EliminarRutaRequest();
+        parametros.setId(1);
+        when(rutaRepositoryMock.findById(parametros.getId())).thenReturn(Optional.empty());
+
+        rutaService.eliminarRuta(parametros);
+
     }
 
 
@@ -129,6 +204,7 @@ import static org.mockito.Mockito.*;
         List<RutaDto> resultado = rutaService.buscarRutas(origen, destino);
         assertEquals(rutas.size(), resultado.size());
     }
+
 
 
 }
