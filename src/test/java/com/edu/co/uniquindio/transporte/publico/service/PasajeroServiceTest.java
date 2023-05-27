@@ -176,4 +176,19 @@ import static org.mockito.Mockito.*;
     }
 
 
+/**
+    @Test
+    public void testCalificarFeedback() throws TPublicoException {
+        Persona persona = new Persona();
+        persona.setCalificacion(2);
+        persona.setId(1);
+       when(pasajeroService.buscarPorId(Mockito.any(Integer.class))).thenReturn(persona);
+        Integer calificacion = 4;
+        Integer id = 1;
+        pasajeroService.calificarfeedback(calificacion, id);
+
+
+    }
+*/
+
 }

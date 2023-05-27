@@ -39,6 +39,11 @@ public class RutaParadaControllerController implements IRutaParadaController {
     }
 
     @Override
+    public List<RutaDto> buscarRutaNombre( String nombre) {
+        return  rutaService.buscarRutasNombre(nombre);
+    }
+
+    @Override
     public Ruta actualizarRuta(RutaRequest parametros) throws TPublicoException {
        return rutaService.actualizarRuta(parametros);
     }

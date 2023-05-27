@@ -60,9 +60,6 @@ public class RutaService {
         return rutaCreada;
     }
 
-
-
-
     public RutaDto buscarRuta (Integer id){
         RutaDto rutaDto = null;
         var ruta = rutaRepository.findById( id);
@@ -72,12 +69,12 @@ public class RutaService {
             rutaTemporal.setNombre(ruta1.getNombre());
             rutaTemporal.setSentido(ruta1.getSentido());
             rutaTemporal.setFrecuencia(ruta1.getFrecuencia());
-
             return rutaTemporal;
         }).orElse(null);
 
         return rutaDto;
     }
+
 
     public Ruta actualizarRuta( RutaRequest parametros) throws  TPublicoException {
         Optional<Ruta> optionalRuta = rutaRepository.findByNombreOrId(parametros.getNombre(), null);
@@ -107,6 +104,9 @@ public class RutaService {
         return rutaRepository.findByOrigenAndDestino(origen, destino);
     }
 
+    public List<RutaDto> buscarRutasNombre(String nombre) {
+        return rutaRepository.findByNombre(nombre);
+    }
     public List<Ruta> buscarRutasConPlataforma(boolean b) {
             return rutaRepository.findByPlataforma(true);
         }

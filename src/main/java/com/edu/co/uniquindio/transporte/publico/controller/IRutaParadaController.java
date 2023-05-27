@@ -34,6 +34,15 @@ public interface IRutaParadaController {
     })
     ResponseEntity<RutaDto> buscarRuta(@RequestParam Integer id);
 
+    @GetMapping(path = "/ruta/{nombre}")
+    @CrossOrigin(origins = "*")
+    @ApiOperation("busca una ruta por  su nombre o id ")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Ruta encreada exitosamente", response = RutaDto.class),
+            @ApiResponse(code = 400, message = "Verificar  datos", response = Exception.class)
+    })
+  List<RutaDto> buscarRutaNombre(@RequestParam String nombre);
+
 
     @PatchMapping
     @CrossOrigin(origins = "*")
