@@ -19,6 +19,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -112,20 +113,34 @@ public class RutaService {
         }
 
 
-    public RutaRequest getInfoRuta(Integer rutaId) {
-        RutaRequest response = null;
+    public RutaDto getInfoRuta(Integer rutaId) {
+        RutaDto response = null;
        Ruta ruta= rutaRepository.findById(rutaId).orElse(null);
        //buscar horario de la ruta
         if(ruta != null) {
+            response = new RutaDto();
+            response.setNombre(ruta.getNombre());
+            response.setOrigen(ruta.getOrigen());
+            response.setSentido(ruta.getSentido());
+            response.setDestino(ruta.getDestino());
+            response.setId(ruta.getId());
+            response.setFrecuencia(ruta.getFrecuencia());
             var paradas = paradaRepository.findByIdRuta(rutaId);
-            String mapa = "";
-            for (Parada parada:
-                    paradas
-                 ) {
-            }
-
+            List<String> paradaDtos = paradas.stream().map(Parada::getDireccion).collect(Collectors.toList());
+            response.setParadas(paradaDtos);
         }
         return response;
+    }
+
+
+    public static ParadaDto mapParadatoDto(Parada parada){
+        var paradaDto = new ParadaDto();
+        paradaDto.setLatitud(parada.getLatitud());
+        paradaDto.setId(parada.getId());
+        paradaDto.setNombre(parada.getNombre());
+        paradaDto.setDireccion(parada.getDireccion());
+        paradaDto.setLongitud(paradaDto.getLongitud());
+        return paradaDto;
     }
 
 }

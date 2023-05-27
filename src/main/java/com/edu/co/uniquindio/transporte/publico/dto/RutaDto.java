@@ -21,6 +21,6 @@ public class RutaDto {
 
     private String destino;
 
-    private List<ParadaDto> paradas;
+    private List<String> paradas;
 
 }

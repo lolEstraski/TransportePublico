@@ -69,8 +69,12 @@ public class RutaParadaControllerController implements IRutaParadaController {
         }
 
     @Override
-    public RutaRequest buscarRutaPorId( Integer id){
-        return rutaService.getInfoRuta(id);
+    public RutaDto buscarRutaPorId( Integer id){
+        return rutaService.buscarRuta(id);
     }
 
+    @Override
+    public ResponseEntity<RutaDto> getParadasByRuta(@PathVariable Integer idRuta){
+        return ResponseEntity.ok(rutaService.getInfoRuta(idRuta));
+    }
 }
