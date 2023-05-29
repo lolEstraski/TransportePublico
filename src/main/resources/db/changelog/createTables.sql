@@ -56,10 +56,12 @@ CREATE TABLE PQRS
 CREATE TABLE RUTAS_FAVORITAS
 (
     id     int         NOT NULL AUTO_INCREMENT,
-    nombre varchar(50) NOT NULL,
-    tipo   varchar(50) NOT NULL,
-    fecha  varchar(50) NOT NULL,
-    PRIMARY KEY (id)
+    nombre varchar(50) ,
+    id_ruta int NOT NULL,
+    id_pasajero int NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_ruta) REFERENCES RUTAS(id),
+    FOREIGN KEY (id_pasajero) REFERENCES PASAJEROS(id)
 );
 
 CREATE TABLE PARADAS

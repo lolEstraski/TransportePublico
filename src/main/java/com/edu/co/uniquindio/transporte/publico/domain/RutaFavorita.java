@@ -14,10 +14,10 @@ public class RutaFavorita {
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "pasajero", referencedColumnName = "id")
+    @JoinColumn(name = "id_pasajero", referencedColumnName = "id")
     private Persona persona;
 
     @ManyToOne
-    @JoinColumn(name = "ruta", referencedColumnName = "id")
+    @JoinColumn(name = "id_ruta", referencedColumnName = "id")
     private Ruta ruta;
 }

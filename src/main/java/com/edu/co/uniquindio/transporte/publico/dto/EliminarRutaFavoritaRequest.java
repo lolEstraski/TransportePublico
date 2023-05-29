@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class EliminarRutaFavoritaRequest {
 
-    private Integer id;
+    private Integer idRuta;
+    private Integer idPasajero;
 }

@@ -1,6 +1,7 @@
 package com.edu.co.uniquindio.transporte.publico.controller;
 
 
+import com.edu.co.uniquindio.transporte.publico.domain.Ruta;
 import com.edu.co.uniquindio.transporte.publico.domain.RutaFavorita;
 import com.edu.co.uniquindio.transporte.publico.dto.EliminarRutaFavoritaRequest;
 import com.edu.co.uniquindio.transporte.publico.dto.RutaFavoritaDto;
@@ -43,7 +44,7 @@ public class RutaFavoritaController implements IRutaFavoritaController {
     }
 
     @Override
-    public List<RutaFavorita> obtenerRutasFavoritas(Integer idPersona) {
+    public List<Ruta> obtenerRutasFavoritas(Integer idPersona) {
         return rutaFavoritaService.obtenerRutasFavoritasPorPersona(idPersona);
     }
 }

@@ -13,6 +13,7 @@ import com.edu.co.uniquindio.transporte.publico.repository.RutaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -43,23 +44,19 @@ public class RutaFavoritaService {
         rutaFavoritaDto = ruta.map( ruta1 ->  {
             var rutaFavoritaTemporal = new RutaFavoritaDto();
             rutaFavoritaTemporal.setIdRuta(rutaFavoritaTemporal.getIdRuta());
-            rutaFavoritaTemporal.setNombre(rutaFavoritaTemporal.getNombre());
-            rutaFavoritaTemporal.setSentido(rutaFavoritaTemporal.getSentido());
-            rutaFavoritaTemporal.setFrecuencia(rutaFavoritaTemporal.getFrecuencia());
-            rutaFavoritaTemporal.setDestino(rutaFavoritaTemporal.getDestino());
 
             return rutaFavoritaTemporal;
         }).orElse(null);
         return rutaFavoritaDto;
     }
 
+    @Transactional
     public void eliminarRutaFavorita(EliminarRutaFavoritaRequest parametros) {
-        var ruta = rutaFavoritaRepository.findById(parametros.getId());
-        ruta.ifPresent(ruta1 -> rutaFavoritaRepository.delete(ruta1));
+        rutaFavoritaRepository.deleteByRutaAndPasajero(parametros.getIdRuta(), parametros.getIdPasajero());
     }
 
-    public List<RutaFavorita> obtenerRutasFavoritasPorPersona(Integer idPersona) {
-        return rutaFavoritaRepository.findByIdPersona(idPersona);
+    public List<Ruta> obtenerRutasFavoritasPorPersona(Integer idPersona) {
+        return rutaRepository.findByIdPersona(idPersona);
     }
 
 }

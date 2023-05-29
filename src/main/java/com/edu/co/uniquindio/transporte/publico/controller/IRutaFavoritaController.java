@@ -41,9 +41,9 @@ public interface IRutaFavoritaController {
             @ApiResponse( code = 200, message = "eliminacion exitosa"),
             @ApiResponse( code = 400, message = "no se puede puede elimar por que esta ruta no existe", response = Exception.class )
     })
-    void elimarRutaFavorita(EliminarRutaFavoritaRequest parametros) throws Exception;
+    void elimarRutaFavorita(@RequestBody EliminarRutaFavoritaRequest parametros) throws Exception;
 
 
     @GetMapping(path = "/pasajero/{idPersona}")
-    List<RutaFavorita> obtenerRutasFavoritas(@PathVariable Integer idPersona);
+    List<Ruta> obtenerRutasFavoritas(@PathVariable Integer idPersona);
 }
