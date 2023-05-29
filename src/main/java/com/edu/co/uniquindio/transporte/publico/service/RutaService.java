@@ -84,6 +84,7 @@ public class RutaService {
             ruta.setSentido(parametros.getSentido());
             ruta.setOrigen(parametros.getOrigen());
             ruta.setDestino(parametros.getDestino());
+            ruta.setPlataforma(parametros.isPlataforma());
             var paradas = paradaRepository.findByIdRuta(ruta.getId());
             paradas.forEach(parada -> paradaRepository.delete(parada));
             var rutaEditada = rutaRepository.save(ruta);
@@ -157,6 +158,7 @@ public class RutaService {
             response.setDestino(ruta.getDestino());
             response.setId(ruta.getId());
             response.setFrecuencia(ruta.getFrecuencia());
+            response.setPlataforma(ruta.isPlataforma());
             var paradas = paradaRepository.findByIdRuta(rutaId);
             List<ParadaDto> paradaDtos = paradas.stream().map(RutaService::mapParadatoDto).collect(Collectors.toList());
             response.setParadas(paradaDtos);
