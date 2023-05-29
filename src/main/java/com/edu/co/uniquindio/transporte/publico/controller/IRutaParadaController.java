@@ -102,5 +102,14 @@ public interface IRutaParadaController {
             @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),
             @ApiResponse(code = 400, message = "no existe ruta con plataforma", response = Exception.class)
     })
-    ResponseEntity<RutaDto> getParadasByRuta(@PathVariable Integer idRuta);
+    ResponseEntity<RutaDto> getDireccionByRuta(@PathVariable Integer idRuta);
+
+    @GetMapping(path = "/{idRuta}/paradas")
+    @CrossOrigin(origins = "*")
+    @ApiOperation("Lista las paradas de una ruta en particular")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Ruta con plataforma", response = Ruta.class),
+            @ApiResponse(code = 400, message = "no existe ruta con plataforma", response = Exception.class)
+    })
+    ResponseEntity<RutaRequest> getParadasByRuta(@PathVariable Integer idRuta);
 }

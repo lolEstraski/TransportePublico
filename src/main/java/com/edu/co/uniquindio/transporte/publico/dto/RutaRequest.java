@@ -10,6 +10,8 @@ import java.util.List;
 @Data
 public class RutaRequest implements Serializable {
 
+    private Integer id;
+
     private String nombre;
 
     private  String sentido;

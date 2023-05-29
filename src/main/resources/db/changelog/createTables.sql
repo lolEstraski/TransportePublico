@@ -68,8 +68,6 @@ CREATE TABLE PARADAS
     id_ruta int NOT NULL,
     nombre varchar(50) NOT NULL,
     direccion   varchar(50) NOT NULL,
-    latitud varchar(50) NOT NULL,
-    longitud varchar(50) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (id_ruta) REFERENCES RUTAS(id)
 );

@@ -18,8 +18,6 @@ public class Parada implements Serializable {
     private Integer id;
     private String nombre;
     private String direccion;
-    private String latitud;
-    private String longitud;
 
     @OneToOne
     @JoinColumn(name = "id_ruta", referencedColumnName = "id")

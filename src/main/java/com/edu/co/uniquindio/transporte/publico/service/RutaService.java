@@ -52,8 +52,6 @@ public class RutaService {
                 var nuevaParada = new Parada();
                 nuevaParada.setNombre(parada.getNombre());
                 nuevaParada.setDireccion(parada.getDireccion());
-                nuevaParada.setLatitud(parada.getLatitud());
-                nuevaParada.setLongitud(parada.getLongitud());
                 nuevaParada.setRuta(rutaCreada);
                 paradaRepository.save(nuevaParada);
             }
@@ -78,7 +76,7 @@ public class RutaService {
 
 
     public Ruta actualizarRuta( RutaRequest parametros) throws  TPublicoException {
-        Optional<Ruta> optionalRuta = rutaRepository.findByNombreOrId(parametros.getNombre(), null);
+        Optional<Ruta> optionalRuta = rutaRepository.findByNombreOrId( null, parametros.getId());
         if (optionalRuta.isPresent()) {
             Ruta ruta = optionalRuta.get();
             ruta.setNombre(parametros.getNombre());
@@ -86,7 +84,18 @@ public class RutaService {
             ruta.setSentido(parametros.getSentido());
             ruta.setOrigen(parametros.getOrigen());
             ruta.setDestino(parametros.getDestino());
-            return rutaRepository.save(ruta);
+            var paradas = paradaRepository.findByIdRuta(ruta.getId());
+            paradas.forEach(parada -> paradaRepository.delete(parada));
+            var rutaEditada = rutaRepository.save(ruta);
+            for (ParadaDto parada:
+                    parametros.getParadas()) {
+                var nuevaParada = new Parada();
+                nuevaParada.setNombre(parada.getNombre());
+                nuevaParada.setDireccion(parada.getDireccion());
+                nuevaParada.setRuta(rutaEditada);
+                paradaRepository.save(nuevaParada);
+            }
+            return rutaEditada;
         }else{
             throw new TPublicoException("la ruta no exite");
         }
@@ -94,7 +103,11 @@ public class RutaService {
 
     public  void eliminarRuta (EliminarRutaRequest parametros) {
         var ruta = rutaRepository.findById(parametros.getId());
-        ruta.ifPresent(ruta1 -> rutaRepository.delete(ruta1));
+        ruta.ifPresent(ruta1 -> {
+            var paradas = paradaRepository.findByIdRuta(ruta1.getId());
+            paradas.forEach(parada -> paradaRepository.delete(parada));
+            rutaRepository.delete(ruta1);
+        });
     }
 
     public List<Ruta> obtenerRutas() {
@@ -132,14 +145,30 @@ public class RutaService {
         return response;
     }
 
+    public RutaRequest getParadsByRuta(Integer rutaId) {
+        RutaRequest response = null;
+        Ruta ruta= rutaRepository.findById(rutaId).orElse(null);
+        //buscar horario de la ruta
+        if(ruta != null) {
+            response = new RutaRequest();
+            response.setNombre(ruta.getNombre());
+            response.setOrigen(ruta.getOrigen());
+            response.setSentido(ruta.getSentido());
+            response.setDestino(ruta.getDestino());
+            response.setId(ruta.getId());
+            response.setFrecuencia(ruta.getFrecuencia());
+            var paradas = paradaRepository.findByIdRuta(rutaId);
+            List<ParadaDto> paradaDtos = paradas.stream().map(RutaService::mapParadatoDto).collect(Collectors.toList());
+            response.setParadas(paradaDtos);
+        }
+        return response;
+    }
 
     public static ParadaDto mapParadatoDto(Parada parada){
         var paradaDto = new ParadaDto();
-        paradaDto.setLatitud(parada.getLatitud());
         paradaDto.setId(parada.getId());
         paradaDto.setNombre(parada.getNombre());
         paradaDto.setDireccion(parada.getDireccion());
-        paradaDto.setLongitud(paradaDto.getLongitud());
         return paradaDto;
     }
 

@@ -8,7 +8,5 @@ public class ParadaDto {
     private Integer id;
     private String nombre;
     private String direccion;
-    private String latitud;
-    private String longitud;
 
 }
